@@ -11,6 +11,7 @@ RUN apt-get install --yes build-essential
 RUN apt-get install --yes apt-utils
 RUN apt-get install --yes libssl-dev zlib1g-dev sqlite3 libsqlite3-dev
 RUN apt-get install --yes git curl
+RUN apt-get install --yes software-properties-common
 
 RUN apt-get --yes  install nodejs
 RUN ln -sf /usr/bin/nodejs /usr/local/bin/node
@@ -19,6 +20,7 @@ RUN node -v
 #RUN curl -fsSL https://dl.yarnpkg.com/debian/pubkey.gpg |  apt-key add -
 #RUN echo "deb https://dl.yarnpkg.com/debian/ stable main" | tee /etc/apt/sources.list.d/yarn.list
 #RUN apt-get update && apt-get install --yes yarn
+
 
 RUN apt-add-repository -y ppa:rael-gc/rvm
 RUN apt-get update
