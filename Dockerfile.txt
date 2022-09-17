@@ -6,7 +6,7 @@ RUN apt-get update && \
 RUN echo "update and install"
 # Install apache and write hello world message
 #RUN echo 'Hello World!' > /var/www/html/index.html
-RUN  git clone https://github.com/luiz0067yahoo/DEMO-CMS-RAILS.git ~/boracomer/
+RUN  git clone https://github.com/luiz0067yahoo/DEMO-CMS-RAILS.git ~/DEMO-CMS-RAILS/
 RUN echo "load repositorio"
 RUN chmod -R 755 /var/www/html/
 RUN echo "permission folder"
