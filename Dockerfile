@@ -4,10 +4,10 @@ FROM ubuntu:20.04
 #RUN rm -rf /etc/timezone
 RUN ln -sf /usr/share/zoneinfo/America/Sao_Paulo /etc/localtime
 RUN echo "America/Sao_Paulo" > /etc/timezone 
-RUN apt-get -y install tzdata
-RUN dpkg-reconfigure -f noninteractive tzdata
 RUN export TZ=America/Sao_Paulo
 RUN ENV TZ=America/Sao_Paulo
+RUN apt-get -y install tzdata
+RUN dpkg-reconfigure -f noninteractive tzdata
 
 RUN apt-get update && apt-get upgrade && apt-get dist-upgrade -y
 RUN apt-get install --yes build-essential 
