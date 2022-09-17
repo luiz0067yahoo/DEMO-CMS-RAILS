@@ -1,5 +1,5 @@
 
-name: DestroyAwsEC2
+name: DestroyContainerDockerAwsEC2
 
 on:
 

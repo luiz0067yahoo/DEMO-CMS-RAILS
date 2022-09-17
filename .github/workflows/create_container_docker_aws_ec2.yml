@@ -1,4 +1,4 @@
-name: CreateAwsEC2
+name: CreateContainerDockerAwsEC2
 
 on:
 
