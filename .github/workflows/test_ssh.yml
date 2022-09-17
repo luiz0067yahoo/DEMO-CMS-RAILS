@@ -1,4 +1,4 @@
-name: SSH_TEST
+name: TestSSHAwsEC2
 
 on:
 
