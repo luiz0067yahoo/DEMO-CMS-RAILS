@@ -58,7 +58,7 @@ RUN gem install rails
 RUN echo "====> Confirm successful installation."
 RUN rails -v
 RUN rm -rf ~/demo_cms_rails/
-RUN git clone https://github.com/luiz0067yahoo/demoCMSRails.git ~/demo_cms_rails/
+RUN git clone https://github.com/luiz0067yahoo/demo_cms_rails.git ~/demo_cms_rails/
 RUN echo "load repository"
 RUN bundle install
 RUN echo "install dependencies"
