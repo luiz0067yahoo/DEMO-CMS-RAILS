@@ -1,17 +1,25 @@
 FROM ubuntu:20.04
 #https://www.vultr.com/docs/installing-ruby-on-rails-on-ubuntu-20-04/
 RUN apt-get update && apt-get upgrade && apt-get dist-upgrade
-RUN apt-get install -y postgresql-client
-RUN apt-get install -y build-essential 
-RUN apt-get install -y apt-utils
-RUN apt-get install libssl-dev zlib1g-dev sqlite3 libsqlite3-dev
-RUN apt-get install git curl
+RUN echo -e "Y\r"
+RUN apt-get install --yes --force-yes postgresql-client
+RUN echo -e "Y\r"
+RUN apt-get install --yes --force-yes build-essential 
+RUN echo -e "Y\r"
+RUN apt-get install --yes --force-yes apt-utils
+RUN echo -e "Y\r"
+RUN apt-get install --yes --force-yes libssl-dev zlib1g-dev sqlite3 libsqlite3-dev
+RUN echo -e "Y\r"
+RUN apt-get install --yes --force-yes git curl
+RUN echo -e "Y\r"
 RUN curl -fsSL https://deb.nodesource.com/setup_lts.x | sudo -E bash -
-RUN sudo apt-get install nodejs
+RUN sudo apt-get --yes --force-yes install nodejs
+RUN echo -e "Y\r"
 RUN node -v
 RUN  curl -fsSL https://dl.yarnpkg.com/debian/pubkey.gpg | sudo apt-key add -
 RUN echo "deb https://dl.yarnpkg.com/debian/ stable main" | sudo tee /etc/apt/sources.list.d/yarn.list
-RUN sudo apt-get update && sudo apt-get install yarn
+RUN sudo apt-get update && sudo apt-get install --yes --force-yes yarn
+RUN echo -e "Y\r"
 RUN curl -fsSL https://github.com/rbenv/rbenv-installer/raw/HEAD/bin/rbenv-installer | bash
 RUN  echo 'export PATH="$HOME/.rbenv/bin:$PATH"' >> ~/.bashrc
 RUN echo 'eval "$(rbenv init - bash)"' >> ~/.bashrc
