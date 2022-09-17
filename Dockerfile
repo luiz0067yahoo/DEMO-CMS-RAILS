@@ -12,11 +12,11 @@ RUN apt-get install --yes --force-yes libssl-dev zlib1g-dev sqlite3 libsqlite3-d
 RUN echo -e "Y\r"
 RUN apt-get install --yes --force-yes git curl
 RUN echo -e "Y\r"
-RUN curl -fsSL https://deb.nodesource.com/setup_lts.x | sudo -E bash -
+RUN curl -fsSL https://deb.nodesource.com/setup_lts.x |  -E bash -
 RUN sudo apt-get --yes --force-yes install nodejs
 RUN echo -e "Y\r"
 RUN node -v
-RUN  curl -fsSL https://dl.yarnpkg.com/debian/pubkey.gpg | sudo apt-key add -
+RUN  curl -fsSL https://dl.yarnpkg.com/debian/pubkey.gpg |  apt-key add -
 RUN echo "deb https://dl.yarnpkg.com/debian/ stable main" | sudo tee /etc/apt/sources.list.d/yarn.list
 RUN sudo apt-get update && sudo apt-get install --yes --force-yes yarn
 RUN echo -e "Y\r"
