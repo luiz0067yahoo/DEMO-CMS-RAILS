@@ -39,16 +39,6 @@ RUN if grep -q secure_path /etc/sudoers; then sh -c "echo export rvmsudo_secure_
 RUN rvm install ruby
 RUN rvm --default use ruby
 
-#RUN curl -fsSL https://github.com/rbenv/rbenv-installer/raw/HEAD/bin/rbenv-installer | bash
-#RUN echo 'export PATH="$HOME/.rbenv/bin:$PATH"' >> ~/.bashrc
-#RUN echo 'eval "$(rbenv init - bash)"' >> ~/.bashrc
-#RUN exec $SHELL
-
-#RUN curl -fsSL https://github.com/rbenv/rbenv-installer/raw/HEAD/bin/rbenv-doctor | bash
-#RUN rbenv install -l
-#RUN rbenv install 3.0.2 -v
-#RUN rbenv global 3.0.2
-
 RUN ruby -v
 RUN gem install bundler
 RUN gem install rails
