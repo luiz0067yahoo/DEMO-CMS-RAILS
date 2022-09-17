@@ -36,6 +36,7 @@ jobs:
               sudo rm -rf /etc/docker/daemon.json
               echo "config docker"
               sudo touch /etc/docker/daemon.json
+              sudo chmod 777 /etc/docker/daemon.json
               sudo echo '{' >> /etc/docker/daemon.json
               sudo echo '"metrics-addr" : "0.0.0.0:9323",' >> /etc/docker/daemon.json
               sudo echo '"experimental" : true' >> /etc/docker/daemon.json
