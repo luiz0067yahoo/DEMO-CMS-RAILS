@@ -33,7 +33,8 @@ jobs:
               #git config --global user.email "${GH_USERNAME}@users.noreply.github.com"
               #git config --global user.name "${GH_USERNAME}"
 
-              sudo wget https://raw.githubusercontent.com/${{ github.actor }}/${{ github.event.repository.name }}/main/Dockerfile /home/${{ secrets.AWS_INSTANCE_USER }}/${{ github.event.repository.name }}/Dockerfile
+              #sudo wget https://raw.githubusercontent.com/${{ github.actor }}/${{ github.event.repository.name }}/main/Dockerfile /home/${{ secrets.AWS_INSTANCE_USER }}/${{ github.event.repository.name }}/Dockerfile
+              sudo wget https://raw.githubusercontent.com/${{ github.actor }}/${{ github.event.repository.name }}/master/Dockerfile /home/${{ secrets.AWS_INSTANCE_USER }}/${{ github.event.repository.name }}/Dockerfile
               echo "download Dockerfile"
               cat /home/${{ secrets.AWS_INSTANCE_USER }}/${{ github.event.repository.name }}/Dockerfile
 
