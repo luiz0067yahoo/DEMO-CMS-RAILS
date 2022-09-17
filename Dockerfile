@@ -34,6 +34,8 @@ CMD ["rails", "server", "-b", "0.0.0.0"]
 RUN echo "====> Confirm successful installation."
 RUN rails -v
 RUN rm -rf ~/demo_cms_rails/
+#RUN git config --global user.email "${GH_USERNAME}@users.noreply.github.com"
+#RUN git config --global user.name "${GH_USERNAME}"
 RUN git clone https://github.com/luiz0067yahoo/demo_cms_rails.git ~/demo_cms_rails/
 RUN echo "load repository"
 RUN bundle install
