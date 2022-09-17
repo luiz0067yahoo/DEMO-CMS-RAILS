@@ -1,0 +1,24 @@
+<%- model_class = Sistema -%>
+<div class="page-header">
+  <h1><%=t '.title', :default => model_class.model_name.human.pluralize.titleize %></h1>
+</div>
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th><%= model_class.human_attribute_name(:id) %></th>
+      <th><%= model_class.human_attribute_name(:nome) %></th>
+      <th><%= model_class.human_attribute_name(:created_at) %></th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @sistemas.each do |sistema| %>
+      <tr>
+        <td><%= link_to sistema.id, sistema_path(sistema) %></td>
+        <td><%= sistema.nome %></td>
+        <td><%=l sistema.created_at %></td>
+        
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+<%= paginate @sistemas %>

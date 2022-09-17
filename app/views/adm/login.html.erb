@@ -1,0 +1,52 @@
+<div class="container">
+    <div class="row">
+		<div class="col-sm-4 col-md-4" >
+			<img src="../assets/img/LINK LINK.png" style="position:absolute;z-index:1000">
+		</div>
+		<div class="col-sm-4 col-md-4">
+			<form class="form-login" method="POST">
+				<%= hidden_field_tag :authenticity_token, form_authenticity_token -%>
+				<h2 class="form-login-heading">Bem vindo</h2>
+				<div class="form-group">
+					<div class="input-group">
+						<label for="login" class="sr-only">Login</label>
+						<span class="input-group-addon"><i class="glyphicon glyphicon-user color-blue"></i></span>
+						<input type="text" id="login" name="login" class="form-control" placeholder="Login" required autofocus>
+					</div>
+				</div>			
+				<div class="form-group">
+					<div class="input-group">
+						<label for="senha" class="sr-only">Senha</label>
+						<span class="input-group-addon"><i class="glyphicon glyphicon-lock color-blue"></i></span>
+						<input type="password" id="senha" name="senha" class="form-control" placeholder="Senha" required>
+					</div>
+				</div>
+
+				<div class="form-group">
+					<div class="input-group col-sm-5  col-md-5 pull-right ">
+						<input name="acao" class="btn btn-lg btn-primary btn-block" type="submit" value="Enviar">							
+					</div>
+					<div class="input-group col-sm-6 col-md-6">
+						<label for="inputSenha" class="sr-only">Lembrar-me</label>
+						<span class="input-group-addon"><input type="checkbox" value="Lembrar-me"  id="Lembrar-me" placeholder="Lembrar-me" ></span>
+						<label id="Lembrar-me" name="Lembrar-me" class="form-control"  >Lembrar-me</label>
+					</div>
+				</div>
+				<div class="form-group">
+					<div class="input-group col-sm-5 col-md-5 pull-right">
+						<a href="\adm\cadastre_se" class="btn btn-link">Cadastre-se</a>	
+					</div>
+					<div class="input-group col-sm-6">
+						<a href="\adm\esqueceu_a_senha" class="btn btn-link">Esqueceu a senha</a>
+					</div>
+				</div>	
+				<% if @usuario.tem_erro(:tentativas_falhadas)%>
+			    <label class="alert alert-danger"><%=@usuario.mensagem_erro(:tentativas_falhadas)%></label>
+				<% end %>			
+				<% if flash[:success].present? %>
+				<label class="alert alert-success"><%= flash[:success] %></label>
+				<% end %>				
+			</form>
+		</div> 
+	</div> 
+</div>

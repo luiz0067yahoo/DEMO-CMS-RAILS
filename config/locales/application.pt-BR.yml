@@ -1,0 +1,102 @@
+pt-BR:
+  activerecord:
+    models:
+      usuario: "Usuário"
+      noticia: "Notícia"
+      galeria_video: "Galeria de vídeos"
+      galeria_foto: "Galeria de Fotos"
+      noticia_video: "Galeria de Vídeos"
+      noticia_foto: "Fotos de Notícias"
+      noticia_video: "Vídeos de Notícias"
+    attributes:
+      usuario:
+       id: "Código"
+       email: "E-mail"
+       created_at: "Criado Em"
+      sistema:
+       id: "Código"
+       created_at: "Criado Em"
+      perfil:
+       id: "Código"
+       created_at: "Criado Em"
+      galeria_video:
+       id: "Código"
+       created_at: "Criado Em"
+       descricao: "Descrição"
+      galeria_foto:
+       id: "Código"
+       created_at: "Criada Em"
+       descricao: "Descrição"
+      noticia:
+       id: "Código"
+       titulo: "Título"
+       subtitulo: "Subtítulo"
+       conteudo: "Conteúdo"
+       created_at: "Criada Em"
+      noticia_foto:
+       id: "Código"
+       descricao: "Descrição"
+       created_at: "Criada Em"
+       Noticia_id: "Código Notícia"
+      noticia_video: 
+       descricao: "Descrição"
+       created_at: "Criado Em"
+       Noticia_id: "Código Notícia"
+    errors:
+      models:
+        usuario:
+          attributes:
+            nome:
+                blank:      
+                too_short:
+                    other:          O login deve ter no minimo 
+                                    3 caracteres, 
+                                    pode numero 
+                                    Exemplo Ana, Joao, Maria, Paulo                
+            login:
+                blank:              O Login está vazio
+                codigo_verificacao: Código não confere para este login
+                invalid:            O login deve ter no minimo 
+                                    3 caracteres, 
+                                    começando por letra não diferencia maiuscula de minuscula, 
+                                    sem espaço, 
+                                    pode numero 
+                                    Exemplo adm adm1
+            senha:
+                blank:              A Senha está vazia
+                invalid:            A senha não atende os requisitos de seguraça.
+                                    Deve ter pelo menos 
+                                    8 caracteres, 
+                                    1 letra maiuscula, 
+                                    1 letra minuscula,
+                                    1 caractere especial 
+                                    Exemplo !@#$%&. 
+                confirm:            O campo Senha e Repetir Senha devem ser iguais
+            email:
+                blank:              O e-mail está vazio
+                invalid:            O e-mail deve Começar por letras,
+                                    pode conter números, 
+                                    terminar com "@" e nome do domininio, 
+                                    Exemplo email@email.com, email1@email.com. 
+                not_found:          E-mail %{e_mail} não cadastrado       
+            tentativas_falhadas:    
+                password_invalid:   Foram %{count} tentativas de Login ou senha Inválida! 
+                                    Após %{limit} tentativas Usuário será bloqueado!
+                invalid:            Login ou senha Inválida!
+                less_than:          Usuário bloqueado! 
+                                    Após %{limit} tentativas de Login ou senha Inválida!
+            foto:
+                dimensions_invalid: A Foto Enviada possui dimensão %{original_width}px Largura X %{original_height}px Altura é menor que a dimensao minima %{min_width}px Largura X %{min_height}px Altura
+
+        menu:
+          attributes:
+            pai_id:
+                has_child_menu:      Menu %{nome} possui outros menus associados
+                has_child_noticia:   Menu %{nome} possui noticias associados
+                has_child_video:     Menu %{nome} possui videos associados
+                has_child_foto:      Menu %{nome} possui fotos associados
+                has_recursive:       Menu %{nome} possui relacionamentos recursivo
+        galeria_foto:
+          attributes:
+            foto:
+                dimensions_invalid: A Foto Enviada possui dimensão  %{original_width}px Largura X %{original_height}px Altura é menor que a dimensao minima %{min_width}px Largura X %{min_height}px Altura

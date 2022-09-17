@@ -1,0 +1,58 @@
+<%- model_class = Noticia -%>
+<div class="page-header">
+  <h1><%=t '.title', :default => model_class.model_name.human.pluralize.titleize %></h1>
+</div>
+<%if(@acesso.politica.novo)%>	
+<%= link_to t('.new', :default => t("helpers.links.new")),
+            new_noticia_path,
+            :class => 'btn btn-primary' %>
+<%end%>	
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th><%= model_class.human_attribute_name(:id) %></th>
+      <th><%= model_class.human_attribute_name(:Menu_id) %></th>
+      <th><%= model_class.human_attribute_name(:foto) %></th>
+      <th><%= model_class.human_attribute_name(:titulo) %></th>
+      <th><%= model_class.human_attribute_name(:subtitulo) %></th>
+      <th><%= model_class.human_attribute_name(:fonte) %></th>
+      <th><%= model_class.human_attribute_name(:conteudo) %></th>
+      <th><%= model_class.human_attribute_name(:ocultar) %></th>
+      <th><%= model_class.human_attribute_name(:created_at) %></th>
+      <th><%=t '.actions', :default => t("helpers.actions") %></th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @noticias.each do |noticia| %>
+      <tr>
+        <td><%= link_to noticia.id, noticia_path(noticia) %></td>
+        <td><%= noticia.Menu_id %></td>
+        <td><%= image_tag noticia.foto.url(:pequena), size: "160x120"%></td>
+        <td><%= noticia.titulo %></td>
+        <td><%= noticia.subtitulo %></td>
+        <td><%= noticia.fonte %></td>
+        <td><%= noticia.conteudo %></td>
+        <td><%= noticia.ocultar %></td>
+        <td><%= noticia.created_at %></td>
+        <td>
+		  <%if(@acesso.politica.ver)%>	
+          <%= link_to t('.show', :default => t("helpers.links.show")),
+                      noticia_path(noticia), :class => 'btn btn-default btn-xs' %>
+		  <%end%>
+		  <%if(@acesso.politica.editar)%>	
+          <%= link_to t('.edit', :default => t("helpers.links.edit")),
+                      edit_noticia_path(noticia), :class => 'btn btn-default btn-xs' %>
+		  <%end%>
+		  <%if(@acesso.politica.excluir)%>	
+          <%= link_to t('.destroy', :default => t("helpers.links.destroy")),
+                      noticia_path(noticia),
+                      :method => :delete,
+                      :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) },
+                      :class => 'btn btn-xs btn-danger' %>
+		  <%end%>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+

@@ -1,0 +1,60 @@
+<%
+if !(session[:inicio_sessao].nil?)
+	tempo=(Time.now - session[:inicio_sessao].try(:to_time)).try(:round)
+	if(tempo<10.minutes)
+		#Time.at(tempo).utc.strftime("%H:%M:%S") 
+ 	else
+		session.clear
+		controller.redirect_to :controller => "adm", :action => "acesso_restrito" 
+		#reset_session
+	end
+else
+	controller.redirect_to :controller => "adm", :action => "acesso_restrito" 
+end
+
+%>
+        <img class="w2desktop" src="../assets/img/wallpaper/azul.jpg">
+        <div class="w2desktop">
+            <div id="menu" class="menu-container w2ui-popup">
+                <div class="menu-item" onclick="w2desktop.popup(this)">
+                    <img class="icon_32" src="../assets/img/oxygen-icons-png-master/oxygen/32x32/apps/system-file-manager.png">
+                    <a href="app/explorer.html" onclick="return false;" width="500" height="500">Explorer</a>
+                </div>
+				<%
+					@sistemas.each do  |sistema| 
+				%>
+				<div class="menu-item" onclick="w2desktop.popup(this)">
+                    <img class="icon_32" src="../assets/img/oxygen-icons-png-master/oxygen/32x32/apps/accessories-text-editor.png">
+                    <a href="../adm/<%=sistema.path%>" onclick="return false;" ><%=sistema.nome.classify.constantize.model_name.human.pluralize.titleize%></a>
+                </div>
+				<%end%>
+
+                <div class="menu-item" onclick="w2desktop.popup(this)">
+                    <img class="icon_32" src="../assets/img/oxygen-icons-png-master/oxygen/32x32/actions/system-switch-user.png">
+                    <a href="/adm/trocar_senha" onclick="return false;" width="800" height="600">Trocar Senha</a>
+                </div>                
+                <div class="menu-item">
+                    <img class="icon_32" src="../assets/img/oxygen-icons-png-master/oxygen/32x32/actions/system-shutdown.png">
+                    <a href="/adm/">Sair</a>
+                </div>                
+            </div>
+            <div class="taskbar">
+                <div class="start-menu" onclick="w2desktop.startMenuClick(this)">
+                    <a style="color: #4285F4">L</a>
+                    <a style="color: #34A853">I</a>
+                    <a style="color: #FBBC05">N</a>
+                    <a style="color: #EA4335">K</a>
+                </div>
+                <div class="tasks">
+                    
+                </div>
+                <div class="clock"></div>
+                <div class="session"></div>
+                <div class="user">&nbsp;&nbsp;<%=session[:usuario_nome]%>&nbsp;&nbsp;</div>
+                <div class="user"><img src="../assets/img/oxygen-icons-png-master/oxygen/32x32/places/user-identity.png"></div>
+            <div>
+        </div>
+<!--
+    /*Code Mirror*/
+    /*calculadora*/
+-->

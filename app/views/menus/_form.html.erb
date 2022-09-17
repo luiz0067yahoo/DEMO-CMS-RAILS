@@ -1,0 +1,51 @@
+<%= form_for @menu, :html => { :class => "form-horizontal menu" } do |f| %>
+  <% if @menu.errors.any? %>
+    <div id="error_expl" class="panel panel-danger">
+      <div class="panel-heading">
+        <h3 class="panel-title"><%= pluralize(@menu.errors.count, "error") %> prohibited this menu from being saved:</h3>
+      </div>
+      <div class="panel-body">
+        <ul>
+        <% @menu.errors.full_messages.each do |msg| %>
+          <li><%= msg %></li>
+        <% end %>
+        </ul>
+      </div>
+    </div>
+  <% end %>
+
+	<div class="form-group">
+    <%= f.label :pai_id, :class => 'control-label col-lg-2' %>
+    <div class="col-lg-10">	  
+		<select class="form-control" onchange="load()" name="menu[pai_id]" id="Menu_id">
+			<option value=""></option>
+			<%@menus.each do |menu| %>
+			<option value="<%=menu.id%>"  <%=(menu.id.to_s == @menu.pai_id)? "selected":""%>><%=menu.nome%></option>
+			<%end%>
+		</select>
+    </div>
+    <%=f.error_span(:pai_id) %>
+  </div>  
+  
+  
+  <div class="form-group">
+    <%= f.label :nome, :class => 'control-label col-lg-2' %>
+    <div class="col-lg-10">
+      <%= f.text_field :nome, :class => 'form-control' %>
+    </div>
+    <%=f.error_span(:nome) %>
+  </div>
+
+
+  <div class="form-group">
+    <div class="col-lg-offset-2 col-lg-10">
+	  <%if(@acesso.politica.salvar)%>	
+      <%= f.submit nil, :class => 'btn btn-primary' %>
+	  <%end%>
+	  
+      <%= link_to t('.cancel', :default => t("helpers.links.cancel")),
+                menus_path, :class => 'btn btn-default' %>
+    </div>
+  </div>
+
+<% end %>

@@ -1,0 +1,90 @@
+<%= form_for @noticia, :html => { :class => "form-horizontal noticia" } do |f| %>
+  <% if @noticia.errors.any? %>
+    <div id="error_expl" class="panel panel-danger">
+      <div class="panel-heading">
+        <h3 class="panel-title"><%= pluralize(@noticia.errors.count, "error") %> prohibited this noticia from being saved:</h3>
+      </div>
+      <div class="panel-body">
+        <ul>
+        <% @noticia.errors.full_messages.each do |msg| %>
+          <li><%= msg %></li>
+        <% end %>
+        </ul>
+      </div>
+    </div>
+  <% end %>
+  
+	<div class="form-group">
+		<%= f.label :Menu_id, :class => 'control-label col-lg-2' %>
+		<div class="col-lg-10">
+		  <select class="form-control" name="noticia[Menu_id]" id="Menu_id">
+				<%@menus.each do |menu| %>
+				<option value="<%=menu.id%>" <%=(menu.id.to_s == @noticia.Menu_id)? "selected": ""%>><%=menu.nome%></option>
+				<%end%>
+			</select>
+		</div>
+		<%=f.error_span(:Menu_id) %>
+	</div>
+  
+  <div class="form-group">
+    <%= f.label :foto, :class => 'control-label col-lg-2' %>
+    <div class="col-lg-10">
+      <%= f.file_field :foto, :class => 'form-control'%>
+      <div><%= image_tag @noticia.foto.url(:pequena), size: "160x120", id:'imgfoto'%></div>
+    </div>
+    <%=f.error_span(:foto) %>
+  </div>  
+  
+  <div class="form-group">
+    <%= f.label :titulo, :class => 'control-label col-lg-2' %>
+    <div class="col-lg-10">
+      <%= f.text_field :titulo, :class => 'form-control' %>
+    </div>
+    <%=f.error_span(:titulo) %>
+  </div>
+  
+  <div class="form-group">
+    <%= f.label :subtitulo, :class => 'control-label col-lg-2' %>
+    <div class="col-lg-10">
+      <%= f.text_field :subtitulo, :class => 'form-control' %>
+    </div>
+    <%=f.error_span(:subtitulo) %>
+  </div>
+  
+  
+  
+  <div class="form-group">
+    <%= f.label :conteudo, :class => 'control-label col-lg-2' %>
+    <div class="col-lg-10">
+      <%= f.text_area :conteudo, :class => 'form-control ckeditor' %>
+    </div>
+    <%=f.error_span(:conteudo) %>
+  </div>
+
+  <div class="form-group">
+    <%= f.label :ocultar, :class => 'control-label col-lg-2' %>
+    <div class="col-sm-1" style="width: 70px">
+      <%= f.check_box :ocultar, :class => 'form-control' %>
+    </div>
+    <%=f.error_span(:ocultar) %>
+  </div>
+  
+  <div class="form-group">
+    <%= f.label :fonte, :class => 'control-label col-lg-2' %>
+    <div class="col-lg-10">
+      <%= f.text_field :fonte, :class => 'form-control' %>
+    </div>
+    <%=f.error_span(:fonte) %>
+  </div>
+  
+  <div class="form-group">
+    <div class="col-lg-offset-2 col-lg-10">
+      <%if(@acesso.politica.salvar)%>	
+	  <%= f.submit nil, :class => 'btn btn-primary' %>
+	  <%end%>
+      <%= link_to t('.cancel', :default => t("helpers.links.cancel")),
+                noticias_path, :class => 'btn btn-default' %>
+    </div>
+  </div>
+<% end %>
+<script type="text/javascript" src="./assets/libs/ckeditor2/ckeditor.js"></script>

@@ -1,0 +1,2 @@
+module NoticiaVideosHelper
+end

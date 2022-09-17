@@ -1,0 +1,51 @@
+<%- model_class = Menu -%>
+<div class="page-header">
+  <h1><%=t '.title', :default => model_class.model_name.human.pluralize.titleize %></h1>
+</div>
+<%if(@acesso.politica.novo)%>
+<%= link_to t('.new', :default => t("helpers.links.new")),
+            new_menu_path,
+            :class => 'btn btn-primary' %>
+<%end%>			
+
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th><%= model_class.human_attribute_name(:id) %></th>
+      <th><%= model_class.human_attribute_name(:nome) %></th>
+      <th><%= model_class.human_attribute_name(:link) %></th>
+      <th><%= model_class.human_attribute_name(:pai_id) %></th>
+      <th><%= model_class.human_attribute_name(:created_at) %></th>
+      <th><%=t '.actions', :default => t("helpers.actions") %></th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @menus.each do |menu| %>
+      <tr>
+        <td><%= link_to menu.id, menu_path(menu) %></td>
+        <td><%= menu.nome %></td>
+        <td><%= menu.link %></td>
+        <td><%= Menu.where(id: menu.pai_id).first.try(:nome) %></td>
+        <td><%=l menu.created_at %></td>
+        <td>
+		  <%if(@acesso.politica.ver)%>	
+          <%= link_to t('.show', :default => t("helpers.links.show")),
+                      menu_path(menu), :class => 'btn btn-default btn-xs' %>
+		  <%end%>
+		  <%if(@acesso.politica.editar)%>		  
+          <%= link_to t('.edit', :default => t("helpers.links.edit")),
+                      edit_menu_path(menu), :class => 'btn btn-default btn-xs' %>
+          <%end%>
+          <%if(@acesso.politica.excluir)%> 		  
+          <%= link_to t('.destroy', :default => t("helpers.links.destroy")),
+                      menu_path(menu),
+                      :method => :delete,
+                      :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) },
+                      :class => 'btn btn-xs btn-danger' %>
+		  <%end%>			  
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+<%= paginate @menus %>

@@ -1,0 +1,25 @@
+<%- model_class = NoticiaVideo -%>
+<div class="page-header">
+  <h1><%=t '.title', :default => model_class.model_name.human.titleize %></h1>
+</div>
+
+<dl class="dl-horizontal">
+  <dt><strong><%= model_class.human_attribute_name(:nome) %>:</strong></dt>
+  <dd><%= @noticia_video.nome %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:descricao) %>:</strong></dt>
+  <dd><%= @noticia_video.descricao %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:link_youtube) %>:</strong></dt>
+  <dd><%= @noticia_video.link_youtube %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:Noticia_id) %>:</strong></dt>
+  <dd><%= @noticia_video.Noticia_id %></dd>
+</dl>
+
+<%= link_to t('.back', :default => t("helpers.links.back")),
+              noticia_videos_path, :class => 'btn btn-default'  %>
+<%= link_to t('.edit', :default => t("helpers.links.edit")),
+              edit_noticia_video_path(@noticia_video), :class => 'btn btn-default' %>
+<%= link_to t('.destroy', :default => t("helpers.links.destroy")),
+              noticia_video_path(@noticia_video),
+              :method => 'delete',
+              :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) },
+              :class => 'btn btn-danger' %>

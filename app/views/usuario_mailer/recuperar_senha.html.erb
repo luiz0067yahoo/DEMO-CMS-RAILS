@@ -1,0 +1,7 @@
+	<h2>Alteração de senha</h2>
+	<p>Olá <%= @usuario.nome %>.</p>
+	<p>
+	  Você solicitou a recuperação de senha. Nosso sistema gerou um código de verificação <b><%=@usuario.gerar_codigo_verificacao%></b>.
+	</p>
+	<p>para criar uma nova senha clique no botao abaixo e informe seu codigo de verificação</p>
+	<a href="<%=@link %>?login=<%=@usuario.login%>"><button>Trocar senha</button></a>

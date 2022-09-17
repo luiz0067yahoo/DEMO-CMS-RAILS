@@ -1,0 +1,17 @@
+<%session[:inicio_sessao]=Time.now%>
+<!DOCTYPE html>
+<html>
+  	<head>
+		<title>CMS</title>
+		<meta charset="utf-8">
+		<link rel="stylesheet" type="text/css" href="./assets/libs/w2ui-master/dist/w2ui.min.css" />
+		<%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+		<%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+  	</head>
+  	<body onload="w2desktop.initialize();" unload="return false;" style="margin: 0px;padding: 0px">
+    	<%= yield %>
+  	</body>
+	<script src="./assets/libs/jquery.min.js"></script>
+	<script type="text/javascript" src="./assets/libs/w2ui-master/dist/w2ui.min.js"></script>
+	<script type="text/javascript" src="./assets/libs/ckeditor/ckeditor.js"></script>  	
+</html>

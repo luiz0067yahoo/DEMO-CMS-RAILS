@@ -1,0 +1,51 @@
+<%- model_class = GaleriaFoto -%>
+<div class="page-header">
+  <h1><%=t '.title', :default => model_class.model_name.human.pluralize.titleize %></h1>
+</div>
+<%if(@acesso.politica.novo)%>	
+<%= link_to t('.new', :default => t("helpers.links.new")),
+            new_galeria_foto_path,
+            :class => 'btn btn-primary' %>
+<%end%>		
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th><%= model_class.human_attribute_name(:id) %></th>
+      <th><%= model_class.human_attribute_name(:nome) %></th>
+      <th><%= model_class.human_attribute_name(:descricao) %></th>
+      <th><%= model_class.human_attribute_name(:Menu_id) %></th>
+      <th><%= model_class.human_attribute_name(:foto) %></th>
+	  <th><%= model_class.human_attribute_name(:created_at) %></th>
+      <th><%=t '.actions', :default => t("helpers.actions") %></th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @galeria_fotos.each do |galeria_foto| %>
+      <tr>
+        <td><%= link_to galeria_foto.id, galeria_foto_path(galeria_foto) %></td>
+        <td><%= galeria_foto.nome %></td>
+        <td><%= galeria_foto.descricao %></td>
+        <td><%= Menu.where("id=0"+galeria_foto.Menu_id.to_s).first.try(:nome) %></td>
+		<td><%= image_tag galeria_foto.foto.url(:pequena), size: "160x120"%></td>  
+		<td><%=l galeria_foto.created_at %></td>
+        <td>
+		<%if(@acesso.politica.ver)%>	
+          <%= link_to t('.show', :default => t("helpers.links.show")),
+                      galeria_foto_path(galeria_foto), :class => 'btn btn-default btn-xs' %>
+		<%end%>
+		<%if(@acesso.politica.editar)%>	
+          <%= link_to t('.edit', :default => t("helpers.links.edit")),
+                      edit_galeria_foto_path(galeria_foto), :class => 'btn btn-default btn-xs' %>
+		<%end%>
+		<%if(@acesso.politica.excluir)%>	
+          <%= link_to t('.destroy', :default => t("helpers.links.destroy")),
+                      galeria_foto_path(galeria_foto),
+                      :method => :delete,
+                      :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) },
+                      :class => 'btn btn-xs btn-danger' %>
+		<%end%>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

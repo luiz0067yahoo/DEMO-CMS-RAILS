@@ -1,0 +1,60 @@
+<%= form_for @galeria_video, :html => { :class => "form-horizontal galeria_video" } do |f| %>
+
+  <% if @galeria_video.errors.any? %>
+    <div id="error_expl" class="panel panel-danger">
+      <div class="panel-heading">
+        <h3 class="panel-title"><%= pluralize(@galeria_video.errors.count, "error") %> prohibited this galeria_video from being saved:</h3>
+      </div>
+      <div class="panel-body">
+        <ul>
+        <% @galeria_video.errors.full_messages.each do |msg| %>
+          <li><%= msg %></li>
+        <% end %>
+        </ul>
+      </div>
+    </div>
+  <% end %>
+ <div class="form-group">
+    <%= f.label :Menu_id, :class => 'control-label col-lg-2' %>
+    <div class="col-lg-10">
+      <select class="form-control" name="galeria_video[Menu_id]" id="Menu_id">
+			<%@menus.each do |menu| %>
+			<option value="<%=menu.id%>" <%=(menu.id.to_s == @galeria_video.Menu_id.to_s)? "selected": "" %>><%=menu.nome%></option>
+			<%end%>
+		</select>
+    </div>
+    <%=f.error_span(:Menu_id) %>
+  </div>
+  <div class="form-group">
+    <%= f.label :nome, :class => 'control-label col-lg-2' %>
+    <div class="col-lg-10">
+      <%= f.text_field :nome, :class => 'form-control' %>
+    </div>
+    <%=f.error_span(:nome) %>
+  </div>
+  <div class="form-group">
+    <%= f.label :descricao, :class => 'control-label col-lg-2' %>
+    <div class="col-lg-10">
+      <%= f.text_field :descricao, :class => 'form-control' %>
+    </div>
+    <%=f.error_span(:descricao) %>
+  </div>
+  <div class="form-group">
+    <%= f.label :link_youtube, :class => 'control-label col-lg-2' %>
+    <div class="col-lg-10">
+      <%= f.text_field :link_youtube, :class => 'form-control' %>
+    </div>
+    <%=f.error_span(:link_youtube) %>
+  </div>
+  
+  <div class="form-group">
+    <div class="col-lg-offset-2 col-lg-10">
+	<%if(@acesso.politica.salvar)%>	
+      <%= f.submit nil, :class => 'btn btn-primary' %>
+	<%end%>  
+      <%= link_to t('.cancel', :default => t("helpers.links.cancel")),
+                galeria_videos_path, :class => 'btn btn-default' %>
+    </div>
+  </div>
+
+<% end %>

@@ -1,0 +1,51 @@
+# Sample localization file for English. Add more files in this directory for other locales.
+# See https://github.com/svenfuchs/rails-i18n/tree/master/rails%2Flocale for starting points.
+
+pt-BR:
+  breadcrumbs:
+    application:
+      root: "Inicio"
+    pages:
+      pages: "Paginas"
+  helpers:
+    actions: "Ações"
+    links:
+      back: "Voltar"
+      cancel: "Cancelar"
+      confirm: "Têm certeza?"
+      account_confirm: "Você tem certeza? <br> Todos os registros da conta serão perdidos. <br> Este processo é irreversível."
+      destroy: "Excluir"
+      destroy: "Excluir"
+      new: "Novo"
+      edit: "Editar"
+      show: "Exibir"
+    submit:  
+      update: "Salvar %{model}"
+      create: "Salvar %{model}"
+    titles:
+      edit: "Editar %{model}"
+      save: "Salvar %{model}"
+      new: "Novo %{model}"
+      delete: "Excluir %{model}"
+      
+en:
+  breadcrumbs:
+    application:
+      root: "Index"
+    pages:
+      pages: "Pages"
+  helpers:
+    actions: "Actions"
+    links:
+      back: "Back"
+      cancel: "Cancel"
+      confirm: "Are you sure?"
+      destroy: "Delete"
+      new: "New"
+      edit: "Edit"
+    titles:
+      edit: "Edit %{model}"
+      save: "Save %{model}"
+      new: "New %{model}"
+      delete: "Delete %{model}"
+

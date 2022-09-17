@@ -1,0 +1,24 @@
+<%
+if !(session[:usuario_id].nil?)
+	session[:inicio_sessao]=Time.now
+end
+%>
+<!DOCTYPE html>
+<html>
+  	<head>
+		<title>CMS</title>
+		<%= csrf_meta_tags %>
+		<%= csp_meta_tag %>
+		<%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+		<meta charset="utf-8">
+		<link rel="stylesheet" type="text/css" href="./assets/libs/w2ui-master/dist/w2ui.min.css" />
+  	<body onload="w2desktop.initialize();" unload="return false;" style="margin: 0px;padding: 0px">
+    	<%= yield %>
+  	</body>
+	<%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+	<script src="./assets/libs/jquery.min.js"></script>
+	<script type="text/javascript" src="./assets/libs/w2ui-master/dist/w2ui-1.5.rc1.js"></script>
+	<!--
+	<script type="text/javascript" src="./assets/libs/w2ui-master/dist/w2ui.min.js"></script>
+	-->
+</html>

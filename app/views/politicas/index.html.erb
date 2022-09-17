@@ -1,0 +1,99 @@
+<%- model_class = Politica -%>
+<script type="text/javascript">
+	function load(){
+		self.location =
+		"?"+document.getElementById("Menu_id").name+"="+document.getElementById("Menu_id").options[document.getElementById("Menu_id").selectedIndex].value   +
+		"&"+document.getElementById("Perfil_id").name+"="+document.getElementById("Perfil_id").options[document.getElementById("Perfil_id").selectedIndex].value
+	}
+</script>
+<div class="page-header">
+  <h1><%=t '.title', :default => model_class.model_name.human.pluralize.titleize %></h1>
+</div>
+<form class="form-Politica" method="POST">
+	<%= hidden_field_tag :authenticity_token, form_authenticity_token -%>
+	
+	<div class="form-group">
+		<%= label_tag 'perfil_id', nil, class: 'control-label col-lg-2'%>
+		<div class="col-lg-10">	  
+			<select class="form-control" onchange="load()" name="Perfil_id" id="Perfil_id">
+				<option value=""></option>
+				<%@perfis.each do |perfil| %>
+				<option value="<%=perfil.id%>" <%=(perfil.id.to_s == params["Perfil_id"])?"selected":""%>><%=perfil.nome%></option>
+				<%end%>
+			</select>
+		</div>
+		<% if @politica.tem_erro(:perfil_id)%>
+		<label class="alert alert-danger"><%=@politica.mensagem_erro(:perfil_id)%></label>
+		<%end%>
+	</div>  
+
+	<div class="form-group">
+		<%= label_tag 'menu_id', nil, class: 'control-label col-lg-2'%>
+		<div class="col-lg-10">	  
+			<select class="form-control" onchange="load()" name="Menu_id" id="Menu_id">
+				<option value="nenhum" <%=("nenhum" == params["Menu_id"])?"selected":""%>>nenhum</option>				
+				<option value="todos" <%=("todos" == params["Menu_id"])?"selected":""%>>todos</option>				
+				<%@menus.each do |menu| %>
+				<option value="<%=menu.id%>" <%=(menu.id.to_s == params["Menu_id"])?"selected":""%>><%=menu.nome%></option>
+				<%end%>
+			</select>
+		</div>
+		<% if @politica.tem_erro(:menu_id)%>
+		<label class="alert alert-danger"><%=@politica.mensagem_erro(:menu_id)%></label>
+		<%end%>
+	</div>  
+	
+	
+	<table class="table table-striped">
+		<thead>
+			<tr>
+				<th><%= model_class.human_attribute_name(:Sistema) %></center></th>
+				<th><center><%= model_class.human_attribute_name(:ver) %></center></th>
+				<th><center><%= model_class.human_attribute_name(:editar) %></center></th>
+				<th><center><%= model_class.human_attribute_name(:novo) %></center></th>
+				<th><center><%= model_class.human_attribute_name(:salvar) %></center></th>
+				<th><center><%= model_class.human_attribute_name(:excluir) %></center></th>
+			</tr>
+		</thead>
+		<tbody>
+<%
+		
+			i=0
+			@sistemas.each do |sistema| 
+				@politica=Politica.new.consulta(params["Perfil_id"],params["Menu_id"],sistema.id)
+				i=i+1
+		%>
+			<tr>
+				<td>
+					<%=sistema.nome%>
+					<input name="politicas[<%=i%>][Sistema_id]" type="hidden" value="<%=sistema.id%>" />
+				</td>
+				<td>	
+						<input name="politicas[<%=i%>][ver]" type="hidden" value="false" />
+						<input class="form-control" type="checkbox" value="true" name="politicas[<%=i%>][ver]" id="politica_ver" <%=(@politica.ver)?"checked":""%> /> 
+				</td>
+				<td>
+						<input name="politicas[<%=i%>][editar]" type="hidden" value="false" />
+						<input class="form-control" type="checkbox" value="true" name="politicas[<%=i%>][editar]" id="politica_editar" <%=(@politica.editar)?"checked":""%>/> 
+				</td>
+				<td>		
+						<input name="politicas[<%=i%>][novo]" type="hidden" value="false" />
+						<input class="form-control" type="checkbox" value="true" name="politicas[<%=i%>][novo]" id="politica_novo" <%=(@politica.novo)?"checked":""%>/> 
+				</td>
+				<td>		
+						<input name="politicas[<%=i%>][salvar]" type="hidden" value="false" />
+						<input class="form-control" type="checkbox" value="true" name="politicas[<%=i%>][salvar]" id="politica_salvar" <%=(@politica.salvar)?"checked":""%>/> 
+				</td>
+				<td>		
+						<input name="politicas[<%=i%>][excluir]" type="hidden" value="false" />
+						<input class="form-control" type="checkbox" value="true" name="politicas[<%=i%>][excluir]" id="politica_excluir" <%=(@politica.excluir)?"checked":""%>/> 
+				</td>
+			</tr>
+		<%	
+		end %>
+		</tbody>
+	</table>
+	<%if(@acesso.politica.salvar)%>
+	<input name="acao" class="btn btn-primary " type="submit" value="Salvar">
+	<%end%>
+</form>

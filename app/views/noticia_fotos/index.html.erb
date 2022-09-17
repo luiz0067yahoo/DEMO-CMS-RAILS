@@ -1,0 +1,44 @@
+<%- model_class = NoticiaFoto -%>
+<div class="page-header">
+  <h1><%=t '.title', :default => model_class.model_name.human.pluralize.titleize %></h1>
+</div>
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th><%= model_class.human_attribute_name(:id) %></th>
+      <th><%= model_class.human_attribute_name(:Noticia_id) %></th>
+      <th><%= model_class.human_attribute_name(:nome) %></th>
+      <th><%= model_class.human_attribute_name(:descricao) %></th>
+      <th><%= model_class.human_attribute_name(:foto) %></th>
+      <th><%= model_class.human_attribute_name(:created_at) %></th>
+      <th><%=t '.actions', :default => t("helpers.actions") %></th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @noticia_fotos.each do |noticia_foto| %>
+      <tr>
+        <td><%= link_to noticia_foto.id, noticia_foto_path(noticia_foto) %></td>
+        <td><%= Noticia.where("id=0"+noticia_foto.Noticia_id.to_s).first.try(:titulo)   %></td>
+        <td><%= noticia_foto.nome %></td>
+        <td><%= noticia_foto.descricao %></td>
+        <td><%= image_tag noticia_foto.foto.url(:pequena), size: "160x120"%></td>  
+        <td><%=l noticia_foto.created_at %></td>
+        <td>
+          <%= link_to t('.show', :default => t("helpers.links.show")),
+                      noticia_foto_path(noticia_foto), :class => 'btn btn-default btn-xs' %>
+          <%= link_to t('.edit', :default => t("helpers.links.edit")),
+                      edit_noticia_foto_path(noticia_foto), :class => 'btn btn-default btn-xs' %>
+          <%= link_to t('.destroy', :default => t("helpers.links.destroy")),
+                      noticia_foto_path(noticia_foto),
+                      :method => :delete,
+                      :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) },
+                      :class => 'btn btn-xs btn-danger' %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<%= link_to t('.new', :default => t("helpers.links.new")),
+            new_noticia_foto_path,
+            :class => 'btn btn-primary' %>
