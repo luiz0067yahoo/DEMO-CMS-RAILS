@@ -1,7 +1,4 @@
 FROM ubuntu:20.04
-#https://www.vultr.com/docs/installing-ruby-on-rails-on-ubuntu-20-04/
-#RUN DEBIAN_FRONTEND=noninteractive TZ=America/Sao_Paulo 
-#RUN rm -rf /etc/timezone
 RUN ln -sf /usr/share/zoneinfo/America/Sao_Paulo /etc/localtime
 RUN echo "America/Sao_Paulo" > /etc/timezone 
 RUN export TZ=America/Sao_Paulo
