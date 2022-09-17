@@ -13,12 +13,12 @@ RUN echo -e "Y\r"
 RUN apt-get install --yes --force-yes git curl
 RUN echo -e "Y\r"
 RUN curl -fsSL https://deb.nodesource.com/setup_lts.x |  -E bash -
-RUN sudo apt-get --yes --force-yes install nodejs
+RUN apt-get --yes --force-yes install nodejs
 RUN echo -e "Y\r"
 RUN node -v
 RUN  curl -fsSL https://dl.yarnpkg.com/debian/pubkey.gpg |  apt-key add -
-RUN echo "deb https://dl.yarnpkg.com/debian/ stable main" | sudo tee /etc/apt/sources.list.d/yarn.list
-RUN sudo apt-get update && sudo apt-get install --yes --force-yes yarn
+RUN echo "deb https://dl.yarnpkg.com/debian/ stable main" | tee /etc/apt/sources.list.d/yarn.list
+RUN apt-get update && apt-get install --yes --force-yes yarn
 RUN echo -e "Y\r"
 RUN curl -fsSL https://github.com/rbenv/rbenv-installer/raw/HEAD/bin/rbenv-installer | bash
 RUN  echo 'export PATH="$HOME/.rbenv/bin:$PATH"' >> ~/.bashrc
