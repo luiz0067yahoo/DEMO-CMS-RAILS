@@ -7,7 +7,7 @@ RUN apt-get update
 RUN echo "Install Dependencies"
 RUN apt-get install build-essential && \
  apt-get install libssl-dev zlib1g-dev sqlite3 libsqlite3-dev && \
- apt-get install git cur
+ apt-get install git curl
 
 RUN echo "Install Nodejs"
 RUN curl -fsSL https://deb.nodesource.com/setup_lts.x | sudo -E bash -
@@ -57,8 +57,8 @@ RUN gem install rails
 
 RUN echo "====> Confirm successful installation."
 RUN rails -v
-
-RUN  git clone https://github.com/luiz0067yahoo/DEMO-CMS-RAILS.git ~/DEMO-CMS-RAILS/
+RUN  rm -rf ~/demoCMSRails/
+RUN  git clone https://github.com/luiz0067yahoo/demoCMSRails.git ~/demoCMSRails/
 RUN echo "load repository"
 #RUN bundle install
 RUN cd ~/DEMO-CMS-RAILS/
