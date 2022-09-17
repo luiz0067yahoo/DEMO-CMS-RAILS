@@ -41,7 +41,7 @@ jobs:
               echo "remove Dockerfile"
               #git config --global user.email "${GH_USERNAME}@users.noreply.github.com"
               #git config --global user.name "${GH_USERNAME}"
-
+              #${{ github.actor }}
               sudo wget https://github.com/ ${{ github.event.schedule.user.login }}/{{ github.event.repository.name }}/blob/master/Dockerfile$ /home/${{ secrets.AWS_INSTANCE_USER }}/${{ github.event.repository.name }}/Dockerfile
               echo "download Dockerfile"
 
