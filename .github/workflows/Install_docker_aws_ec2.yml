@@ -29,9 +29,9 @@ jobs:
             key: ${{ secrets.AWS_SSH_KEY_PEM }}
             port: ${{ secrets.AWS_INSTANCE_SSH_PORT }}
             script: | 
-              apt-get update
+              sudo apt-get update
               echo "update system"
-              apt-get install docker.io
+              sudo apt-get install docker.io
               echo "install docker"
               sudo rm -rf /etc/docker/daemon.json
               echo "config docker"
