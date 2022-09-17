@@ -6,20 +6,30 @@ RUN apt-get install --yes apt-utils
 RUN apt-get install --yes libssl-dev zlib1g-dev sqlite3 libsqlite3-dev
 RUN apt-get install --yes git curl
 
-RUN curl -fsSL https://deb.nodesource.com/setup_lts.x | bash -
+#RUN curl -fsSL https://deb.nodesource.com/setup_lts.x | bash -
 RUN apt-get --yes  install nodejs
+RUN ln -sf /usr/bin/nodejs /usr/local/bin/node
 RUN node -v
-RUN curl -fsSL https://dl.yarnpkg.com/debian/pubkey.gpg |  apt-key add -
-RUN echo "deb https://dl.yarnpkg.com/debian/ stable main" | tee /etc/apt/sources.list.d/yarn.list
-RUN apt-get update && apt-get install --yes yarn
 
-RUN curl -fsSL https://github.com/rbenv/rbenv-installer/raw/HEAD/bin/rbenv-installer | bash
-RUN echo 'export PATH="$HOME/.rbenv/bin:$PATH"' >> ~/.bashrc
-RUN echo 'eval "$(rbenv init - bash)"' >> ~/.bashrc
-RUN exec $SHELL
+#RUN curl -fsSL https://dl.yarnpkg.com/debian/pubkey.gpg |  apt-key add -
+#RUN echo "deb https://dl.yarnpkg.com/debian/ stable main" | tee /etc/apt/sources.list.d/yarn.list
+#RUN apt-get update && apt-get install --yes yarn
 
-RUN curl -fsSL https://github.com/rbenv/rbenv-installer/raw/HEAD/bin/rbenv-doctor | bash
-RUN rbenv install -l
+RUN gpg --keyserver hkp://keys.gnupg.net --recv-keys 409B6B1796C275462A1703113804BB82D39DC0E3
+RUN curl -sSL https://get.rvm.io | bash -s stable
+RUN usermod -a -G rvm 'whoami'
+
+RUN if grep -q secure_path /etc/sudoers; then sh -c "echo export rvmsudo_secure_path=1 >> /etc/profile.d/rvm_secure_path.sh" && echo Environment variable installed; fi
+RUN rvm install ruby
+RUN rvm --default use ruby
+
+#RUN curl -fsSL https://github.com/rbenv/rbenv-installer/raw/HEAD/bin/rbenv-installer | bash
+#RUN echo 'export PATH="$HOME/.rbenv/bin:$PATH"' >> ~/.bashrc
+#RUN echo 'eval "$(rbenv init - bash)"' >> ~/.bashrc
+#RUN exec $SHELL
+
+#RUN curl -fsSL https://github.com/rbenv/rbenv-installer/raw/HEAD/bin/rbenv-doctor | bash
+#RUN rbenv install -l
 #RUN rbenv install 3.0.2 -v
 #RUN rbenv global 3.0.2
 
