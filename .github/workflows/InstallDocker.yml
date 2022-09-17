@@ -1,0 +1,46 @@
+name: InstallDockerAwsEC2
+
+on:
+
+  workflow_dispatch:
+
+jobs:
+
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+
+      - name: Start AWS EC2
+
+        run: |
+          aws ec2 start-instances --instance-ids ${{secrets.AWS_INSTANCE_ID }}
+        env:
+          AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          AWS_DEFAULT_REGION: ${{ secrets.AWS_REGION }}
+
+      - name: SSH connect
+        uses: appleboy/ssh-action@master
+        with:
+            host: ${{ secrets.AWS_INSTANCE_IP }}
+            username: ${{ secrets.AWS_INSTANCE_USER }}
+            key: ${{ secrets.AWS_SSH_KEY_PEM }}
+            port: ${{ secrets.AWS_INSTANCE_SSH_PORT }}
+            script: | 
+              apt-get update
+              echo "update system"
+              apt-get install docker.io
+              echo "install docker"
+              sudo rm -rf /etc/docker/daemon.json
+              echo "config docker"
+              sudo touch /etc/docker/daemon.json
+              sudo echo '{' >> /etc/docker/daemon.json
+              sudo echo '"metrics-addr" : "0.0.0.0:9323",' >> /etc/docker/daemon.json
+              sudo echo '"experimental" : true' >> /etc/docker/daemon.json
+              sudo echo '}' >> /etc/docker/daemon.json
+              echo "edit file config docker"
+              service docker restart
+              echo "restart docker"
+              #sudo dockerd

@@ -1,0 +1,48 @@
+
+name: DestroyAwsEC2
+
+on:
+
+  workflow_dispatch:
+
+jobs:
+
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+
+      - name: Start AWS EC2
+
+        run: |
+          aws ec2 start-instances --instance-ids ${{secrets.AWS_INSTANCE_ID }}
+        env:
+          AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          AWS_DEFAULT_REGION: ${{ secrets.AWS_REGION }}
+
+      - name: SSH connect
+        uses: appleboy/ssh-action@master
+        with:
+            host: ${{ secrets.AWS_INSTANCE_IP }}
+            username: ${{ secrets.AWS_INSTANCE_USER }}
+            key: ${{ secrets.AWS_SSH_KEY_PEM }}
+            port: ${{ secrets.AWS_INSTANCE_SSH_PORT }}
+            script: | 
+              echo "remove all containers"
+              #sudo docker stop $(docker ps -a -q)
+              sudo docker stop ${{ github.event.repository.name }}
+              echo "stop all containers by force"
+              #sudo docker kill $(docker ps -q)
+              sudo docker kill ${{ github.event.repository.name }}
+              echo "remove all containers"
+              #sudo docker rm $(docker ps -a -q)
+              sudo docker rm ${{ github.event.repository.name }}
+              echo "remove all docker images"
+              #sudo docker rmi $(docker images -q)
+              sudo docker rmi ${{ github.event.repository.name }}
+              echo "purge the rest"
+              sudo docker system prune --all --force --volumes
+              echo "remove folder"
+              sudo rm -rf /home/${{ secrets.AWS_INSTANCE_USER }}/${{ github.event.repository.name }}
