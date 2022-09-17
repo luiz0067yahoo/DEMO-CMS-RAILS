@@ -2,8 +2,8 @@ FROM ubuntu:20.04
 #https://www.vultr.com/docs/installing-ruby-on-rails-on-ubuntu-20-04/
 RUN apt-get update && apt-get upgrade && apt-get dist-upgrade
 RUN apt-get install -y postgresql-client
-RUN apt-get install build-essential 
-RUN apt-get install apt-utils
+RUN apt-get install -y build-essential 
+RUN apt-get install -y apt-utils
 RUN apt-get install libssl-dev zlib1g-dev sqlite3 libsqlite3-dev
 RUN apt-get install git curl
 RUN curl -fsSL https://deb.nodesource.com/setup_lts.x | sudo -E bash -
