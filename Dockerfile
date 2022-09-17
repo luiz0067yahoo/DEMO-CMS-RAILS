@@ -1,4 +1,5 @@
-FROM ubuntu:18.04
+FROM ubuntu:20.04
+#https://www.vultr.com/docs/installing-ruby-on-rails-on-ubuntu-20-04/
 RUN apt-get update -qq && apt-get install -y postgresql-client
 RUN apt-get install build-essential
 RUN apt-get install libssl-dev zlib1g-dev sqlite3 libsqlite3-dev
