@@ -12,15 +12,6 @@ jobs:
 
     steps:
 
-      - name: Start AWS EC2
-
-        run: |
-          aws ec2 start-instances --instance-ids ${{secrets.AWS_INSTANCE_ID }}
-        env:
-          AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
-          AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-          AWS_DEFAULT_REGION: ${{ secrets.AWS_REGION }}
-
       - name: SSH connect
         uses: appleboy/ssh-action@master
         with:
@@ -45,10 +36,10 @@ jobs:
               sudo wget https://github.com/${{ github.actor }}/${{ github.event.repository.name }}/blob/master/Dockerfile /home/${{ secrets.AWS_INSTANCE_USER }}/${{ github.event.repository.name }}/Dockerfile
               echo "download Dockerfile"
 
-              docker container stop container_${{ github.event.repository.name }} 
-              echo "stop container"
-              docker kill container_${{ github.event.repository.name }} 
-              echo "kill container"
+              #docker container stop container_${{ github.event.repository.name }} 
+              #echo "stop container"
+              #docker kill container_${{ github.event.repository.name }} 
+              #echo "kill container"
 
               sudo docker build -t ${{ github.event.repository.name }} .
               echo "build container"
