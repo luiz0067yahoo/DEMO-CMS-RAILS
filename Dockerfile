@@ -1,6 +1,7 @@
 FROM ubuntu:20.04
 #https://www.vultr.com/docs/installing-ruby-on-rails-on-ubuntu-20-04/
-RUN DEBIAN_FRONTEND=noninteractive TZ=America/Sao_Paulo apt-get -y install tzdata
+RUN DEBIAN_FRONTEND=noninteractive TZ=America/Sao_Paulo 
+RUN apt-get -y install tzdata
 RUN apt-get update && apt-get upgrade && apt-get dist-upgrade -y
 RUN apt-get install --yes build-essential 
 RUN apt-get install --yes apt-utils
