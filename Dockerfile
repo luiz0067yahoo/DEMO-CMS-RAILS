@@ -5,9 +5,11 @@ RUN echo "update"
 RUN apt-get update 
 
 RUN echo "Install Dependencies"
-RUN apt-get install build-essential && \
- apt-get install libssl-dev zlib1g-dev sqlite3 libsqlite3-dev && \
- apt-get install git curl
+RUN apt-get install build-essential
+RUN echo "Install libs"
+RUN apt-get install libssl-dev zlib1g-dev sqlite3 libsqlite3-dev
+RUN echo "Install libs"
+RUN apt-get install git curl
 
 RUN echo "Install Nodejs"
 RUN curl -fsSL https://deb.nodesource.com/setup_lts.x | sudo -E bash -
