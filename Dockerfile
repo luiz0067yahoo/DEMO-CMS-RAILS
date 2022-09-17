@@ -61,7 +61,7 @@ RUN rm -rf ~/demoCMSRails/
 RUN git clone https://github.com/luiz0067yahoo/demoCMSRails.git ~/demoCMSRails/
 RUN echo "load repository"
 #RUN bundle install
-RUN cd ~/DEMO-CMS-RAILS/
+RUN cd ~/demoCMSRails/
 RUN echo "RUN SERVER"
 RUN rails server 
 RUN echo "http://localhost:3000"
