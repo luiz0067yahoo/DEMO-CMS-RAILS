@@ -1,7 +1,11 @@
 FROM ubuntu:20.04
 #https://www.vultr.com/docs/installing-ruby-on-rails-on-ubuntu-20-04/
 #RUN DEBIAN_FRONTEND=noninteractive TZ=America/Sao_Paulo 
-RUN apk add --no-cache tzdata && cp -r -f /usr/share/zoneinfo/America/Sao_Paulo /etc/localtime
+#RUN rm -rf /etc/timezone
+RUN ln -sf /usr/share/zoneinfo/America/Sao_Paulo /etc/localtime
+RUN echo "America/Sao_Paulo" > /etc/timezone && dpkg-reconfigure -f noninteractive tzdata
+RUN export TZ=America/Sao_Paulo
+RUN ENV TZ=America/Sao_Paulo
 RUN apt-get -y install tzdata
 RUN apt-get update && apt-get upgrade && apt-get dist-upgrade -y
 RUN apt-get install --yes build-essential 
