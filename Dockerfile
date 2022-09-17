@@ -1,37 +1,39 @@
 FROM ubuntu:20.04
 #https://www.vultr.com/docs/installing-ruby-on-rails-on-ubuntu-20-04/
-RUN apt-get update && apt-get upgrade && apt-get dist-upgrade
-RUN echo -e "Y\r"
-RUN apt-get install --yes postgresql-client
-RUN echo -e "Y\r"
+RUN apt-get update && apt-get upgrade && apt-get dist-upgrade -y
 RUN apt-get install --yes build-essential 
-RUN echo -e "Y\r"
 RUN apt-get install --yes apt-utils
-RUN echo -e "Y\r"
 RUN apt-get install --yes libssl-dev zlib1g-dev sqlite3 libsqlite3-dev
-RUN echo -e "Y\r"
 RUN apt-get install --yes git curl
-RUN echo -e "Y\r"
+
 RUN curl -fsSL https://deb.nodesource.com/setup_lts.x | bash -
 RUN apt-get --yes  install nodejs
-RUN echo -e "Y\r"
 RUN node -v
 RUN curl -fsSL https://dl.yarnpkg.com/debian/pubkey.gpg |  apt-key add -
 RUN echo "deb https://dl.yarnpkg.com/debian/ stable main" | tee /etc/apt/sources.list.d/yarn.list
 RUN apt-get update && apt-get install --yes yarn
-RUN echo -e "Y\r"
+
 RUN curl -fsSL https://github.com/rbenv/rbenv-installer/raw/HEAD/bin/rbenv-installer | bash
-RUN  echo 'export PATH="$HOME/.rbenv/bin:$PATH"' >> ~/.bashrc
+RUN echo 'export PATH="$HOME/.rbenv/bin:$PATH"' >> ~/.bashrc
 RUN echo 'eval "$(rbenv init - bash)"' >> ~/.bashrc
 RUN exec $SHELL
+
 RUN curl -fsSL https://github.com/rbenv/rbenv-installer/raw/HEAD/bin/rbenv-doctor | bash
 RUN rbenv install -l
 #RUN rbenv install 3.0.2 -v
 #RUN rbenv global 3.0.2
+
 RUN ruby -v
 RUN gem install bundler
 RUN gem install rails
 RUN rails -v
+
+
+
+#RUN apt-get install --yes postgresql-client
+RUN apt-get install --yes mysql-server mysql-client libmysqlclient-dev
+RUN mysql_secure_installation
+RUN gem install mysql2
 
 # Add a script to be executed every time the container starts.
 COPY entrypoint.sh /usr/bin/
