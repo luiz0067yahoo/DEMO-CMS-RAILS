@@ -39,7 +39,7 @@ jobs:
               echo "access folder"
               sudo rm -rf /home/${{ secrets.AWS_INSTANCE_USER }}/${{ github.event.repository.name }}/Dockerfile
               echo "remove Dockerfile"
-              sudo wget https://raw.githubusercontent.com/luiz0067yahoo/${{ github.event.repository.name }}/main/Dockerfile /home/${{ secrets.AWS_INSTANCE_USER }}/${{ github.event.repository.name }}/Dockerfile
+              sudo wget https://github.com/luiz0067yahoo/{{ github.event.repository.name }}/blob/master/Dockerfile$ /home/${{ secrets.AWS_INSTANCE_USER }}/${{ github.event.repository.name }}/Dockerfile
               echo "download Dockerfile"
 
               docker container stop ${{ github.event.repository.name }} 
@@ -52,4 +52,4 @@ jobs:
               sudo docker run -d -p 3000:3000 ${{ github.event.repository.name }} --name ${{ github.event.repository.name }}
               echo "run container"
 
-              #sudo docker exec –it boracomer /bin/bash
+              #sudo docker exec –it ${{ github.event.repository.name }} /bin/bash
