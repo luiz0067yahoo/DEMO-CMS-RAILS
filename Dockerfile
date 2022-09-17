@@ -6,8 +6,8 @@ RUN apt-get update
 
 RUN echo "Install Dependencies"
 RUN apt-get install build-essential && \
- apt-get install libssl-dev zlib1g-dev sqlite3 libsqlite3-dev && |
- apt-get install git curl
+ apt-get install libssl-dev zlib1g-dev sqlite3 libsqlite3-dev && \
+ apt-get install git cur
 
 RUN echo "Install Nodejs"
 RUN curl -fsSL https://deb.nodesource.com/setup_lts.x | sudo -E bash -
@@ -15,7 +15,7 @@ RUN sudo apt-get install nodejs
 RUN node -v
 
 RUN echo "Install Yarn"
-rUN curl -fsSL https://dl.yarnpkg.com/debian/pubkey.gpg | sudo apt-key add -
+RUN curl -fsSL https://dl.yarnpkg.com/debian/pubkey.gpg | sudo apt-key add -
 RUN echo "deb https://dl.yarnpkg.com/debian/ stable main" | sudo tee /etc/apt/sources.list.d/yarn.list
 RUN apt-get update && sudo apt-get install yarn
 RUN yarn -v
