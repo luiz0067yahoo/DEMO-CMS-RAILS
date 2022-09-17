@@ -1,4 +1,4 @@
-name: AwsEC2
+name: TestAwsEC2
 
 on:
 
