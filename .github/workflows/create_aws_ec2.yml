@@ -1,4 +1,4 @@
-name: AwsEC2
+name: CreateAwsEC2
 
 on:
 
