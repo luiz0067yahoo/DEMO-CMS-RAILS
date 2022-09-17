@@ -19,13 +19,15 @@ RUN node -v
 #RUN apt-get update && apt-get install --yes yarn
 
 
-RUN apt-add-repository -y ppa:rael-gc/rvm
+RUN curl -sSL https://rvm.io/mpapis.asc | gpg --import -
+RUN curl -sSL https://rvm.io/pkuczynski.asc | gpg --import -
 RUN apt-get update
-RUN apt-get install rvm
+RUN curl -sSL https://get.rvm.io | bash -s stable
 RUN usermod -a -G rvm $USER
 RUN usermod -a -G rvm 'whoami'
 RUN ~/.bashrc
 RUN echo 'source "/etc/profile.d/rvm.sh"' >> ~/.bashrc
+RUN source ~/.bashrc
 
 RUN if grep -q secure_path /etc/sudoers; then sh -c "echo export rvmsudo_secure_path=1 >> /etc/profile.d/rvm_secure_path.sh" && echo Environment variable installed; fi
 RUN rvm install ruby
