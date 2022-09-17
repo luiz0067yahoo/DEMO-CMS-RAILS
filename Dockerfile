@@ -6,21 +6,12 @@ RUN ln -sf /usr/share/zoneinfo/America/Sao_Paulo /etc/localtime
 RUN echo "America/Sao_Paulo" > /etc/timezone 
 RUN export TZ=America/Sao_Paulo
 
-
-
-
-
-
-#RUN apt-get -y install tzdata
-#RUN dpkg-reconfigure -f noninteractive tzdata
-
 RUN apt-get update && apt-get upgrade && apt-get dist-upgrade -y
 RUN apt-get install --yes build-essential 
 RUN apt-get install --yes apt-utils
 RUN apt-get install --yes libssl-dev zlib1g-dev sqlite3 libsqlite3-dev
 RUN apt-get install --yes git curl
 
-#RUN curl -fsSL https://deb.nodesource.com/setup_lts.x | bash -
 RUN apt-get --yes  install nodejs
 RUN ln -sf /usr/bin/nodejs /usr/local/bin/node
 RUN node -v
@@ -29,11 +20,13 @@ RUN node -v
 #RUN echo "deb https://dl.yarnpkg.com/debian/ stable main" | tee /etc/apt/sources.list.d/yarn.list
 #RUN apt-get update && apt-get install --yes yarn
 
-#RUN gpg --keyserver hkp://keys.gnupg.net --recv-keys 409B6B1796C275462A1703113804BB82D39DC0E3
-RUN apt install gnupg
-RUN gpg --keyserver hkp://pool.sks-keyservers.net --recv-keys 409B6B1796C275462A1703113804BB82D39DC0E3 7D2BAF1CF37B13E2069D6956105BD0E739499BDB
-RUN curl –L https://get.rvm.io | bash –s stable
+RUN apt-add-repository -y ppa:rael-gc/rvm
+RUN apt-get update
+RUN apt-get install rvm
+RUN usermod -a -G rvm $USER
 RUN usermod -a -G rvm 'whoami'
+RUN ~/.bashrc
+RUN echo 'source "/etc/profile.d/rvm.sh"' >> ~/.bashrc
 
 RUN if grep -q secure_path /etc/sudoers; then sh -c "echo export rvmsudo_secure_path=1 >> /etc/profile.d/rvm_secure_path.sh" && echo Environment variable installed; fi
 RUN rvm install ruby
