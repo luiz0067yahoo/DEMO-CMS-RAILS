@@ -53,7 +53,8 @@ jobs:
               sudo docker build -t ${{ github.event.repository.name }} .
               echo "build container"
               #sudo docker run --name container_${{ github.event.repository.name }} -d  ${{ github.event.repository.name }} -p 80:80
-              sudo docker run -d  ${{ github.event.repository.name }} -p ${{ secrets.APP_PORT }}:${{ secrets.APP_PORT }}
+              #sudo docker run -d  ${{ github.event.repository.name }} -p ${{ secrets.APP_PORT }}:${{ secrets.APP_PORT }}
+              sudo docker run -d -p ${{ secrets.APP_PORT }}:${{ secrets.APP_PORT }} ${{ github.event.repository.name }} 
               echo "run container"
 
               #sudo docker exec –it container_${{ github.event.repository.name }} /bin/bash
