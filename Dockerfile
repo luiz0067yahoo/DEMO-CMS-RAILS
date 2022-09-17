@@ -5,7 +5,7 @@ RUN echo "update"
 RUN apt-get update 
 
 RUN echo "Install Dependencies"
-RUN apt-get install build-essential
+RUN apt-get install build-essential -y
 RUN echo "Install libs"
 RUN apt-get install libssl-dev zlib1g-dev sqlite3 libsqlite3-dev
 RUN echo "Install libs"
