@@ -1,5 +1,9 @@
-#¨66666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666
+#7777777777777777777777777777777777777777777777777777777777777777777
 FROM ubuntu:20.04
+
+#RUN apt-get install --yes postgresql-client   
+#RUN apt-get install --yes mysql-server mysql-client libmysqlclient-dev
+#RUN mysql_secure_installation
 
 RUN ln -sf /usr/share/zoneinfo/America/Sao_Paulo /etc/localtime
 RUN echo "America/Sao_Paulo" > /etc/timezone 
@@ -110,9 +114,6 @@ RUN gem install bundler
 RUN gem install rails  
 RUN rails -v
 
-#RUN apt-get install --yes postgresql-client   
-RUN apt-get install --yes mysql-server mysql-client libmysqlclient-dev
-RUN mysql_secure_installation
 RUN gem install mysql2
 
 # Add a script to be executed every time the container starts.
@@ -148,4 +149,4 @@ RUN echo "http://localhost:3000"
 #cd ~/demo_cms_rails/
 #sudo docker build -t demo_cms_rails . 
 #sudo  docker run -d -p 3000:3000 demo_cms_rails
-#666666666666666666666666666666666666666666666666666666666666666666
+#7777777777777777777777777777777777777777777777777777777777777
