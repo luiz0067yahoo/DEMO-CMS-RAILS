@@ -1,7 +1,3 @@
-#***********************************************************************************************************************
-#***********************************************************************************************************************
-#***********************************************************************************************************************
-#***********************************************************************************************************************
 FROM ubuntu:20.04
 
 
@@ -28,6 +24,40 @@ RUN node -v
 #RUN apt-get update && apt-get install --yes yarn
 
 #############################################################################################################################
+RUN apt-get update \
+ && apt-get install -y \
+      autoconf \
+      automake \
+      bison \
+      g++ \
+      gawk \
+      imagemagick \
+      libbz2-dev \
+      libcurl4-openssl-dev \
+      libevent-dev \
+      libffi-dev \
+      libgdbm-dev \
+      libglib2.0-dev \
+      libgmp-dev \
+      libjpeg-dev \
+      libmagickcore-dev \
+      libmagickwand-dev \
+      libmysqlclient-dev \
+      libncurses-dev \
+      libncurses5-dev \
+      libpq-dev \
+      libreadline-dev \
+      libsqlite3-dev \
+      libssl-dev \
+      libxml2-dev \
+      libxslt-dev \
+      libyaml-dev \
+      make \
+      patch \
+      sqlite3 \
+      zlib1g-dev \
+ && apt-get clean \
+ && rm -rf /var/lib/apt/lists/*
 RUN curl -sSL https://rvm.io/mpapis.asc | gpg --import -
 RUN curl -sSL https://rvm.io/pkuczynski.asc | gpg --import -
 RUN apt-get update
@@ -40,7 +70,6 @@ RUN bash rvm-installer
 #RUN usermod -a -G rvm 'whoami'
 RUN . /etc/profile.d/rvm.sh
 #RUN bash -l -c PATH=$PATH:/path/to/your/rvm/binary
-RUN apt-get install -y gawk autoconf automake bison libffi-dev libgdbm-dev libncurses5-dev libtool libyaml-dev pkg-config libgmp-dev libreadline-dev libssl1.0-dev
 RUN /bin/bash -l -c ". /etc/profile.d/rvm.sh && rvm install 2.3.3"
 #############################################################################################################################
 
@@ -93,7 +122,4 @@ RUN echo "http://localhost:3000"
 #cd ~/demo_cms_rails/
 #sudo docker build -t demo_cms_rails . 
 #sudo  docker run -d -p 3000:3000 demo_cms_rails
-#***********************************************************************************************************************
-#***********************************************************************************************************************
-#***********************************************************************************************************************
-#***********************************************************************************************************************
+#!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
