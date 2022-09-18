@@ -28,7 +28,8 @@ RUN curl -sSL https://get.rvm.io | bash -s stable
 #RUN ~/.bashrc  
 RUN echo 'source "/etc/profile.d/rvm.sh"' >> ~/.bashrc   
 RUN chmod 7777 ~/.bashrc
-RUN ~/.bashrc  
+RUN ~/.bashrc   
+RUN cat ~/.bashrc   
 #############################################################################################################################
 
 RUN if grep -q secure_path /etc/sudoers; then sh -c "echo export rvmsudo_secure_path=1 >> /etc/profile.d/rvm_secure_path.sh" && echo Environment variable installed; fi
@@ -66,6 +67,7 @@ RUN cd ~/demo_cms_rails/
 RUN echo "RUN SERVER"
 RUN rails server -p 3000
 RUN echo "http://localhost:3000"
+#cd ~
 #cd ~
 #rm -rf ~/demo_cms_rails/
 #git clone https://github.com/luiz0067yahoo/demo_cms_rails.git ~/demo_cms_rails/
