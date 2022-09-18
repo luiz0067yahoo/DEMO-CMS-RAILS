@@ -26,11 +26,6 @@ RUN apt-get update
 RUN curl -sSL https://get.rvm.io | bash -s stable
 #RUN usermod -a -G rvm $USER
 #RUN usermod -a -G rvm 'whoami'
-#RUN ~/.bashrc  
-#RUN echo 'source "/etc/profile.d/rvm.sh"' >> ~/.bashrc   
-#RUN chmod 7777 ~/.bashrc
-$RUN ~/.bashrc   
-$RUN cat ~/.bashrc   
 RUN . /etc/profile.d/rvm.sh
 #############################################################################################################################
 
@@ -77,4 +72,4 @@ RUN echo "http://localhost:3000"
 #cd ~/demo_cms_rails/
 #sudo docker build -t demo_cms_rails . 
 #sudo  docker run -d -p 3000:3000 demo_cms_rails
-#&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&
+#***********************************************************************************************************************
