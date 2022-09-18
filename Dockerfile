@@ -50,8 +50,6 @@ RUN chmod +x /usr/bin/entrypoint.sh
 ENTRYPOINT ["entrypoint.sh"]
 EXPOSE 3000
 
-
-
 # Configure the main process to run when running the image
 CMD ["rails", "server", "-b", "0.0.0.0"]
 RUN echo "====> Confirm successful installation."
@@ -74,3 +72,4 @@ RUN echo "http://localhost:3000"
 #cd ~/demo_cms_rails/
 #sudo docker build -t demo_cms_rails .
 #sudo  docker run -d -p 3000:3000 demo_cms_rails
+######################################################################################################################################
