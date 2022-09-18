@@ -115,7 +115,7 @@ RUN  /bin/bash -c "source $HOME/.rvm/scripts/rvm"
 RUN $HOME/.rvm/scripts/rvm | head -1
 RUN $HOME/.rvm/scripts/rvm group add rvm ubuntu    
 RUN $HOME/.rvm/scripts/rvm get stable --auto-dotfiles
-RUN fix-permissions system
+RUN $HOME/.rvm/scripts/rvm fix-permissions system
 RUN echo "install and config rvm, bundler"  
 ###############################################################################################################################################################  
 
