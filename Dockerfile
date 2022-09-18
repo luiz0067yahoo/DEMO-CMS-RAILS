@@ -60,9 +60,8 @@ RUN apt-get update \
  && rm -rf /var/lib/apt/lists/*
 #RUN curl -sSL https://rvm.io/mpapis.asc | gpg --import -
 #RUN curl -sSL https://rvm.io/pkuczynski.asc | gpg --import -
-RUN mkdir -p /usr/src/app && chown docker:docker /usr/src/app
+RUN mkdir -p /usr/src/app && chmod 777 /usr/src/app
 
-USER docker
 
 # Install RVM
 RUN set -ex && \
