@@ -108,6 +108,8 @@ RUN mkdir -p /home/ubuntu/.rvm/gemsets/
 RUN curl -sSL https://get.rvm.io | bash -s -- --autolibs=read-fail stable \
  && echo 'bundler' >> /home/ubuntu/.rvm/gemsets/global.gems \
  && echo 'rvm_silence_path_mismatch_check_flag=1' >> ~/.rvmrc
+RUN echo "source $HOME/.rvm/scripts/rvm" >> ~/.bash_profile 
+RUN if grep -q secure_path /etc/sudoers; then sh -c "echo export rvmsudo_secure_path=1 >> /etc/profile.d/rvm_secure_path.sh" && echo Environment variable installed; fi
 RUN rvm group add rvm ubuntu    
 RUN echo "install rvm"  
 ###############################################################################################################################################################  
@@ -133,7 +135,6 @@ RUN rvm alias create 3.1 ruby-3.1.1
 RUN rvm use --default 3.1.1
 #############################################################################################################################
 
-RUN if grep -q secure_path /etc/sudoers; then sh -c "echo export rvmsudo_secure_path=1 >> /etc/profile.d/rvm_secure_path.sh" && echo Environment variable installed; fi
 RUN rvm install ruby
 RUN rvm --default use ruby
   
