@@ -82,7 +82,7 @@ RUN chmod 777 /home/docker/.rvm/gemsets/global.gems
 RUN curl -sSL https://get.rvm.io | bash -s -- --autolibs=read-fail stable \
  && echo 'bundler' >> /home/docker/.rvm/gemsets/global.gems \
  && echo 'rvm_silence_path_mismatch_check_flag=1' >> ~/.rvmrc
-RUN rvmsudo rvm get stable --auto-dotfiles
+RUN rvm get stable --auto-dotfiles
 RUN rvm fix-permissions system
 
 
