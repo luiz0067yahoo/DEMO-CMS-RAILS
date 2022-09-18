@@ -13,18 +13,7 @@ RUN export TZ=America/Sao_Paulo
 RUN echo "timezone"
 ###############################################################################################################################################################
 
-###############################################################################################################################################################
-RUN echo "Install Node"
-RUN apt-get --yes  install nodejs
-RUN ln -sf /usr/bin/nodejs /usr/local/bin/node   
-RUN node -v
-###############################################################################################################################################################
-
-#RUN curl -fsSL https://dl.yarnpkg.com/debian/pubkey.gpg |  apt-key add -
-#RUN echo "deb https://dl.yarnpkg.com/debian/ stable main" | tee /etc/apt/sources.list.d/yarn.list
-#RUN apt-get update && apt-get install --yes yarn  
-
-#########################################################################################################
+########################################################################################################
 RUN apt-get update && apt-get upgrade && apt-get dist-upgrade --yes \
  && apt-get install -y \   
       apt-utils \
@@ -64,12 +53,31 @@ RUN apt-get update && apt-get upgrade && apt-get dist-upgrade --yes \
       zlib1g-dev \
  && apt-get clean \
  && rm -rf /var/lib/apt/lists/*
+ RUN echo "install basic"
+###############################################################################################################################################################
+
+###############################################################################################################################################################
+RUN apt-get --yes  install nodejs
+RUN ln -sf /usr/bin/nodejs /usr/local/bin/node   
+RUN node -v
+RUN echo "Install Node"
+###############################################################################################################################################################
+
+###############################################################################################################################################################
+#RUN curl -fsSL https://dl.yarnpkg.com/debian/pubkey.gpg |  apt-key add -
+#RUN echo "deb https://dl.yarnpkg.com/debian/ stable main" | tee /etc/apt/sources.list.d/yarn.list
+#RUN apt-get update && apt-get install --yes yarn  
+#RUN echo "Install yarn"
+###############################################################################################################################################################
+
+###############################################################################################################################################################
 RUN groupadd -r ubuntu -g 433 && \
     useradd -u 431 -r -g ubuntu -s /sbin/nologin -c "Docker image user" ubuntu
 RUN mkdir -p /home/ubuntu/
 RUN chmod 777 /home/ubuntu/
 USER ubuntu
-
+#RUN echo "create user ubuntu login ubuntu"
+###############################################################################################################################################################
 RUN curl -sSL https://rvm.io/mpapis.asc | gpg --import -
 RUN curl -sSL https://rvm.io/pkuczynski.asc | gpg --import -
 RUN mkdir -p /usr/src/app && chmod 777 /usr/src/app
