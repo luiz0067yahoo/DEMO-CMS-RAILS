@@ -135,9 +135,11 @@ RUN groupadd -r ubuntu -g 433 && \
 #USER root
 
 USER ubuntu    
+
 RUN cd ~/demo_cms_rails/
 RUN echo "load repository"
-RUN bundle install
+#RUN bundle install
+RUN bundle install --without production 
 RUN echo "install dependencies"
 RUN echo "RUN SERVER"
 RUN rails server -p 3000
