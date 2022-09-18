@@ -113,8 +113,7 @@ RUN curl -sSL https://get.rvm.io | bash -s -- --autolibs=read-fail stable \
 #RUN echo "source $HOME/.rvm/scripts/rvm" >> ~/.bash_profile 
 #RUN if grep -q secure_path /etc/sudoers; then sh -c "echo export rvmsudo_secure_path=1 >> /etc/profile.d/rvm_secure_path.sh" && echo Environment variable installed; fi
 RUN export PATH=$PATH:/opt/rvm/bin:/opt/rvm/sbin
-RUN echo '[[ -s "$HOME/.rvm/scripts/rvm" ]] && . "$HOME/.rvm/scripts/rvm" # Load RVM function' >> ~/.bashrc
-RUN  /bin/bash -c source ~/.bashrc
+RUN  /bin/bash -c "source /usr/share/rvm/scripts/rvm"
 RUN type rvm | head -1
 RUN rvm group add rvm ubuntu    
 RUN rvm get stable --auto-dotfiles
