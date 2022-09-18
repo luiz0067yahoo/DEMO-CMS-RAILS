@@ -118,6 +118,11 @@ RUN gem install mysql2
 
 EXPOSE 3000
 
+RUN groupadd -r ubuntu -g 433 && \
+    useradd -u 431 -r -g ubuntu -s /sbin/nologin -c "Docker image user" ubuntu
+#USER root
+USER ubuntu    
+    
 # Configure the main process to run when running the image
 CMD ["rails", "server", "-b", "0.0.0.0"]
 RUN echo "====> Confirm successful installation."
