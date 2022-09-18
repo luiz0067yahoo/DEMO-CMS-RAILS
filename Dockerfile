@@ -97,16 +97,16 @@ RUN groupadd -r ubuntu -g 433 && \
 USER ubuntu
 
 # Install Rubies
-RUN rvm install "ruby-2.5.1" \
- # && rvm install 2.6.9 \
- # && rvm alias create 2.6 ruby-2.6.9 \
- # && rvm install 2.7.5 \
- # && rvm alias create 2.7 ruby-2.7.5 \
- # && rvm install 3.0.3 \
- # && rvm alias create 3.0 ruby-3.0.3 \
- && rvm install 3.1.1 \
- && rvm alias create 3.1 ruby-3.1.1 \
- && rvm use --default 3.1.1
+#RUN rvm install "ruby-2.5.1" 
+#RUN rvm install 2.6.9 
+#RUN rvm alias create 2.6 ruby-2.6.9 
+#RUN && rvm install 2.7.5 
+#RUN && rvm alias create 2.7 ruby-2.7.5 
+#RUN && rvm install 3.0.3 
+#RUN && rvm alias create 3.0 ruby-3.0.3 
+RUN rvm install 3.1.1 
+RUN rvm alias create 3.1 ruby-3.1.1 
+RUN rvm use --default 3.1.1
 #############################################################################################################################
 
 
