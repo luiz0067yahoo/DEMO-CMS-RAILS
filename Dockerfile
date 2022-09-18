@@ -3,16 +3,16 @@ FROM ubuntu:20.04
 
 #RUN apt-get install --yes postgresql-client   
 #RUN apt-get install --yes mysql-server mysql-client libmysqlclient-dev
-#RUN mysql_secure_installation
+#RUN mysql_secure_installation       
 
-RUN ln -sf /usr/share/zoneinfo/America/Sao_Paulo /etc/localtime
-RUN echo "America/Sao_Paulo" > /etc/timezone 
-RUN export TZ=America/Sao_Paulo
+RUN ln -sf /usr/share/zoneinfo/America/Sao_Paulo /etc/localtime   
+RUN echo "America/Sao_Paulo" > /etc/timezone     
+RUN export TZ=America/Sao_Paulo   
 
-RUN apt-get update && apt-get upgrade && apt-get dist-upgrade -y
-RUN apt-get install --yes build-essential 
-RUN apt-get install --yes apt-utils
-RUN apt-get install --yes libssl-dev zlib1g-dev sqlite3 libsqlite3-dev   
+RUN apt-get update && apt-get upgrade && apt-get dist-upgrade -y   
+RUN apt-get install --yes build-essential   
+RUN apt-get install --yes apt-utils   
+RUN apt-get install --yes libssl-dev zlib1g-dev sqlite3 libsqlite3-dev     
 RUN apt-get install --yes git curl
 RUN apt-get install --yes software-properties-common   
 
@@ -56,7 +56,7 @@ RUN apt-get update \
       libyaml-dev \
       make \
       patch \
-      sqlite3 \
+      sqlite3 \   
       zlib1g-dev \
  && apt-get clean \
  && rm -rf /var/lib/apt/lists/*
@@ -117,7 +117,7 @@ RUN rvm --default use ruby
   
 RUN rm -rf ~/demo_cms_rails/
 RUN git clone https://github.com/luiz0067yahoo/demo_cms_rails.git /home/ubuntu/demo_cms_rails/
-RUN cd ~/demo_cms_rails/
+RUN cd ~/demo_cms_rails/    
 RUN ruby -v   
 RUN gem install bundler 
 RUN gem install rails  
