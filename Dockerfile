@@ -61,7 +61,12 @@ RUN apt-get update \
 #RUN curl -sSL https://rvm.io/mpapis.asc | gpg --import -
 #RUN curl -sSL https://rvm.io/pkuczynski.asc | gpg --import -
 RUN mkdir -p /usr/src/app && chmod 777 /usr/src/app
-
+RUN useradd docker
+RUN useradd -m docker
+RUN useradd -m -d /home/docker docker
+#RUN usermod -aG sudo docker
+RUN usermod -aG docker
+USER docker
 
 # Install RVM
 RUN set -ex && \
@@ -73,7 +78,11 @@ RUN set -ex && \
       gpg --batch --keyserver hkp://ipv4.pool.sks-keyservers.net --recv-keys "$key" || \
       gpg --batch --keyserver hkp://pgp.mit.edu:80 --recv-keys "$key" ; \
   done
-
+  
+RUN mkdir -R /home/docker/.rvm/gemsets/
+RUN rm -rf /home/docker/.rvm/gemsets/global.gems
+RUN touch /home/docker/.rvm/gemsets/global.gems
+RUN chmod 777 /home/docker/.rvm/gemsets/global.gems
 RUN curl -sSL https://get.rvm.io | bash -s -- --autolibs=read-fail stable \
  && echo 'bundler' >> /home/docker/.rvm/gemsets/global.gems \
  && echo 'rvm_silence_path_mismatch_check_flag=1' >> ~/.rvmrc
@@ -142,4 +151,4 @@ RUN echo "http://localhost:3000"
 #cd ~/demo_cms_rails/
 #sudo docker build -t demo_cms_rails . 
 #sudo  docker run -d -p 3000:3000 demo_cms_rails
-#!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+#222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222
