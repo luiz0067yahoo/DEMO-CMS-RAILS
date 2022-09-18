@@ -3,9 +3,6 @@ RUN ln -sf /usr/share/zoneinfo/America/Sao_Paulo /etc/localtime
 RUN echo "America/Sao_Paulo" > /etc/timezone 
 RUN export TZ=America/Sao_Paulo
 
-
-
-
 RUN apt-get update && apt-get upgrade && apt-get dist-upgrade -y
 RUN apt-get install --yes build-essential 
 RUN apt-get install --yes apt-utils
@@ -13,6 +10,7 @@ RUN apt-get install --yes libssl-dev zlib1g-dev sqlite3 libsqlite3-dev
 RUN apt-get install --yes git curl
 RUN apt-get install --yes software-properties-common
 
+RUN echo "Install Node"
 RUN apt-get --yes  install nodejs
 RUN ln -sf /usr/bin/nodejs /usr/local/bin/node
 RUN node -v
