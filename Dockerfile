@@ -113,28 +113,28 @@ RUN if grep -q secure_path /etc/sudoers; then sh -c "echo export rvmsudo_secure_
 RUN rvm group add rvm ubuntu    
 RUN rvm get stable --auto-dotfiles
 RUN fix-permissions system
-RUN echo "install rvm"  
+RUN echo "install and config rvm"  
 ###############################################################################################################################################################  
-                                                                                                 
+
 SHELL ["/bin/bash", "-lc"]
 CMD ["/bin/bash", "-l"]
-
+###############################################################################################################################################################  
 # Install Rubies
 #RUN rvm install "ruby-2.5.1" 
 #RUN rvm install 2.6.9 
 #RUN rvm alias create 2.6 ruby-2.6.9 
-#RUN && rvm install 2.7.5 
-#RUN && rvm alias create 2.7 ruby-2.7.5 
-#RUN && rvm install 3.0.3 
-#RUN && rvm alias create 3.0 ruby-3.0.3 
+#RUN rvm install 2.7.5 
+#RUN rvm alias create 2.7 ruby-2.7.5 
+#RUN rvm install 3.0.3 
+#RUN rvm alias create 3.0 ruby-3.0.3 
 #RUN rvm install 3.1.1 
-RUN rvm install ruby-3.1.1 
-RUN rvm alias create 3.1 ruby-3.1.1 
-RUN rvm use --default 3.1.1
-#############################################################################################################################
-
+#RUN rvm install ruby-3.1.1 
+#RUN rvm alias create 3.1 ruby-3.1.1 
+#RUN rvm use --default 3.1.1
 RUN rvm install ruby
 RUN rvm --default use ruby
+RUN echo "install and config ruby"  
+#############################################################################################################################
   
 RUN rm -rf ~/demo_cms_rails/
 RUN git clone https://github.com/luiz0067yahoo/demo_cms_rails.git /home/ubuntu/demo_cms_rails/
