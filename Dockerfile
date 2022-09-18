@@ -89,8 +89,8 @@ CMD ["/bin/bash", "-l"]
 RUN groupadd -r ubuntu -g 433 && \
     useradd -u 431 -r -g ubuntu -s /sbin/nologin -c "Docker image user" ubuntu
 RUN rvm group add rvm ubuntu    
-RUN mkdir -p '/home/ubuntu/
-RUN chmod 777 '/home/ubuntu/
+RUN mkdir -p /home/ubuntu/
+RUN chmod 777 /home/ubuntu/
 USER ubuntu
 RUN rvm get stable --auto-dotfiles
 RUN fix-permissions system
