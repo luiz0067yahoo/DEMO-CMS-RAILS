@@ -175,4 +175,18 @@ RUN echo "====> Confirm successful installation."
 
 #sudo docker build -t demo_cms_rails . 
 #sudo  docker run -d -p 3000:3000 demo_cms_rails
+#docker run --name pandora_community --rm \
+#-p 8085:80 \
+#-p 41121:41121 \
+#-p 162:162 \
+#-e DBHOST=mysqlhost.local \
+#-e DBNAME=pandora \
+#-e DBUSER=pandora \
+#-e DBPASS=pandora \
+#-e DBPORT=3306 \
+#-e SLEEP=5 \
+#-e RETRIES=3 \
+#-e INSTANCE_NAME=pandora_community \
+#-ti rameijeiras/pandorafms-community:740
+#docker run -d --name container-name alpine watch "date >> /var/log/date.log"
 ###############################################################################################################################################################
