@@ -1,4 +1,4 @@
-######################################################################################################################
+#@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 FROM ubuntu:20.04
 
 #RUN apt-get install --yes postgresql-client   
@@ -104,8 +104,6 @@ RUN rvm alias create 3.1 ruby-3.1.1
 RUN rvm use --default 3.1.1
 #############################################################################################################################
 
-
-
 RUN if grep -q secure_path /etc/sudoers; then sh -c "echo export rvmsudo_secure_path=1 >> /etc/profile.d/rvm_secure_path.sh" && echo Environment variable installed; fi
 RUN rvm install ruby
 RUN rvm --default use ruby
@@ -133,20 +131,12 @@ RUN echo "http://localhost:3000"
 #RUN chmod 777 /home/ubuntu/demo_cms_rails/
 #USER ubuntu    
 #USER root
-#USER ubuntu    
-
 
 EXPOSE 3000
 
 RUN echo "====> Confirm successful installation."
 
 
-#cd ~
-#cd ~
-#rm -rf ~/demo_cms_rails/
-#git clone https://github.com/luiz0067yahoo/demo_cms_rails.git ~/demo_cms_rails/
-#sudo chmod 777 ~/demo_cms_rails/
-#cd ~/demo_cms_rails/
 #sudo docker build -t demo_cms_rails . 
 #sudo  docker run -d -p 3000:3000 demo_cms_rails
-######################################################################################################################
+#@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
