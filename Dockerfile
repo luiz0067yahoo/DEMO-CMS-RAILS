@@ -1,4 +1,4 @@
-#555555555555555555555555555
+#¨66666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666
 FROM ubuntu:20.04
 
 RUN ln -sf /usr/share/zoneinfo/America/Sao_Paulo /etc/localtime
@@ -23,11 +23,11 @@ RUN node -v
 
 #############################################################################################################################
 RUN apt-get update \
- && apt-get install -y \
+ && apt-get install -y \   
       autoconf \
-      automake \
+      automake \   
       bison \
-      g++ \
+      g++ \   
       gawk \
       imagemagick \
       libbz2-dev \
@@ -63,7 +63,7 @@ RUN mkdir -p /usr/src/app && chmod 777 /usr/src/app
 #RUN useradd -m -d /home/docker docker
 #RUN usermod -aG sudo docker
 #RUN usermod -aG docker
-USER docker
+#USER docker
 
 # Install RVM
 RUN set -ex && \
@@ -148,4 +148,4 @@ RUN echo "http://localhost:3000"
 #cd ~/demo_cms_rails/
 #sudo docker build -t demo_cms_rails . 
 #sudo  docker run -d -p 3000:3000 demo_cms_rails
-#555555555555555555555555555
+#66666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666
