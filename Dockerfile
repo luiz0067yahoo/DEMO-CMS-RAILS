@@ -34,7 +34,7 @@ RUN apt-get update
 RUN curl -sSL https://get.rvm.io | bash -s stable  
 RUN curl -sSL https://raw.githubusercontent.com/rvm/rvm/stable/binscripts/rvm-installer     -o rvm-installer 
 RUN curl -sSL https://raw.githubusercontent.com/rvm/rvm/stable/binscripts/rvm-installer.asc -o rvm-installer.asc 
-RUN gpg2 --verify rvm-installer.asc rvm-installer 
+#RUN gpg2 --verify rvm-installer.asc rvm-installer 
 RUN bash rvm-installer
 #RUN usermod -a -G rvm $USER
 #RUN usermod -a -G rvm 'whoami'
