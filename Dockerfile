@@ -113,7 +113,7 @@ RUN if grep -q secure_path /etc/sudoers; then sh -c "echo export rvmsudo_secure_
 RUN rvm group add rvm ubuntu    
 RUN rvm get stable --auto-dotfiles
 RUN fix-permissions system
-RUN echo "install and config rvm"  
+RUN echo "install and config rvm, bundler"  
 ###############################################################################################################################################################  
 
 SHELL ["/bin/bash", "-lc"]
@@ -135,10 +135,15 @@ RUN rvm install ruby
 RUN rvm --default use ruby
 RUN echo "install and config ruby"  
 #############################################################################################################################
-  
+
+#############################################################################################################################
 RUN rm -rf ~/demo_cms_rails/
 RUN git clone https://github.com/luiz0067yahoo/demo_cms_rails.git /home/ubuntu/demo_cms_rails/
+RUN echo "load project"  
 RUN cd ~/demo_cms_rails/    
+#############################################################################################################################
+
+#############################################################################################################################
 RUN ruby -v   
 RUN gem install bundler 
 RUN gem install rails  
@@ -146,13 +151,19 @@ RUN gem install rails
 RUN rails -v
 RUN echo "load repository"
 #RUN bundle install
+#RUN bundle config --global frozen 0  
 RUN bundle install --without production 
 RUN echo "install dependencies"
+#############################################################################################################################
+
+#############################################################################################################################
 RUN echo "RUN SERVER" 
 RUN rails server -p 3000
 # Configure the main process to run when running the image 
 #CMD ["rails", "server", "-b", "0.0.0.0"] 
 RUN echo "http://localhost:3000"  
+#############################################################################################################################
+
 #RUN bundle config --global frozen 0  
 #USER root
 #RUN chmod 777 /home/ubuntu/demo_cms_rails/  
