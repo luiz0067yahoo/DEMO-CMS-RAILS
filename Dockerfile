@@ -1,41 +1,44 @@
 ###############################################################################################################################################################
 FROM ubuntu:20.04
-
+RUN echo "ubuntu:20.04"
 #RUN apt-get install --yes postgresql-client   
 #RUN apt-get install --yes mysql-server mysql-client libmysqlclient-dev
 #RUN mysql_secure_installation       
+###############################################################################################################################################################
 
+###############################################################################################################################################################
 RUN ln -sf /usr/share/zoneinfo/America/Sao_Paulo /etc/localtime   
 RUN echo "America/Sao_Paulo" > /etc/timezone     
 RUN export TZ=America/Sao_Paulo   
+RUN echo "timezone"
+###############################################################################################################################################################
 
-RUN apt-get update && apt-get upgrade && apt-get dist-upgrade -y   
-RUN apt-get install --yes build-essential   
-RUN apt-get install --yes apt-utils   
-RUN apt-get install --yes libssl-dev zlib1g-dev sqlite3 libsqlite3-dev     
-RUN apt-get install --yes git curl
-RUN apt-get install --yes software-properties-common   
-
+###############################################################################################################################################################
 RUN echo "Install Node"
 RUN apt-get --yes  install nodejs
 RUN ln -sf /usr/bin/nodejs /usr/local/bin/node   
 RUN node -v
+###############################################################################################################################################################
 
 #RUN curl -fsSL https://dl.yarnpkg.com/debian/pubkey.gpg |  apt-key add -
 #RUN echo "deb https://dl.yarnpkg.com/debian/ stable main" | tee /etc/apt/sources.list.d/yarn.list
 #RUN apt-get update && apt-get install --yes yarn  
 
 #########################################################################################################
-RUN apt-get update \
+RUN apt-get update && apt-get upgrade && apt-get dist-upgrade --yes \
  && apt-get install -y \   
+      apt-utils \
       autoconf \
       automake \   
+      build-essential \
       bison \
-      g++ \   
+      curl \
+      g++ \ 
       gawk \
+      git \
       imagemagick \
       libbz2-dev \
-      libcurl4-openssl-dev \
+      libcurl4-openssl-dev \      
       libevent-dev \
       libffi-dev \
       libgdbm-dev \
@@ -56,7 +59,8 @@ RUN apt-get update \
       libyaml-dev \
       make \
       patch \
-      sqlite3 \   
+      sqlite3 \ 
+      software-properties-common \
       zlib1g-dev \
  && apt-get clean \
  && rm -rf /var/lib/apt/lists/*
@@ -89,7 +93,7 @@ RUN curl -sSL https://get.rvm.io | bash -s -- --autolibs=read-fail stable \
  && echo 'bundler' >> /home/docker/.rvm/gemsets/global.gems \
  && echo 'rvm_silence_path_mismatch_check_flag=1' >> ~/.rvmrc
 RUN rvm group add rvm ubuntu    
-
+                                                                                                 
 SHELL ["/bin/bash", "-lc"]
 CMD ["/bin/bash", "-l"]
 
