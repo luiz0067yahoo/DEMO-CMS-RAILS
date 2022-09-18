@@ -81,7 +81,7 @@ RUN groupadd -r ubuntu -g 433 && \
 RUN mkdir -p /home/ubuntu/
 RUN chmod 777 /home/ubuntu/
 USER ubuntu
-#RUN echo "create user ubuntu login ubuntu"
+RUN echo "create user ubuntu login ubuntu"
 ###############################################################################################################################################################
 
 ###############################################################################################################################################################
@@ -111,15 +111,13 @@ RUN curl -sSL https://get.rvm.io | bash -s -- --autolibs=read-fail stable \
 RUN echo "source $HOME/.rvm/scripts/rvm" >> ~/.bash_profile 
 RUN if grep -q secure_path /etc/sudoers; then sh -c "echo export rvmsudo_secure_path=1 >> /etc/profile.d/rvm_secure_path.sh" && echo Environment variable installed; fi
 RUN rvm group add rvm ubuntu    
+RUN rvm get stable --auto-dotfiles
+RUN fix-permissions system
 RUN echo "install rvm"  
 ###############################################################################################################################################################  
                                                                                                  
 SHELL ["/bin/bash", "-lc"]
 CMD ["/bin/bash", "-l"]
-
-
-RUN rvm get stable --auto-dotfiles
-RUN fix-permissions system
 
 # Install Rubies
 #RUN rvm install "ruby-2.5.1" 
