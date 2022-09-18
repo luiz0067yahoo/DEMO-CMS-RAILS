@@ -1,4 +1,4 @@
-#8888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888
+#############################################################################################################
 FROM ubuntu:20.04
 
 #RUN apt-get install --yes postgresql-client   
@@ -125,22 +125,21 @@ RUN echo "load repository"
 #RUN bundle install
 RUN bundle install --without production 
 RUN echo "install dependencies"
-RUN echo "RUN SERVER"
+RUN echo "RUN SERVER" 
 RUN rails server -p 3000
-# Configure the main process to run when running the image
-#CMD ["rails", "server", "-b", "0.0.0.0"]
-RUN echo "http://localhost:3000"
-#RUN bundle config --global frozen 0
+# Configure the main process to run when running the image 
+#CMD ["rails", "server", "-b", "0.0.0.0"] 
+RUN echo "http://localhost:3000"  
+#RUN bundle config --global frozen 0  
 #USER root
-#RUN chmod 777 /home/ubuntu/demo_cms_rails/
+#RUN chmod 777 /home/ubuntu/demo_cms_rails/  
 #USER ubuntu    
-#USER root
+#USER root  
 
 EXPOSE 3000
 
 RUN echo "====> Confirm successful installation."
 
-
 #sudo docker build -t demo_cms_rails . 
 #sudo  docker run -d -p 3000:3000 demo_cms_rails
-#8888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888
+#############################################################################################################
