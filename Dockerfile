@@ -27,7 +27,8 @@ RUN curl -sSL https://get.rvm.io | bash -s stable
 #RUN usermod -a -G rvm 'whoami'
 #RUN ~/.bashrc  
 RUN echo 'source "/etc/profile.d/rvm.sh"' >> ~/.bashrc   
-RUN source ~/.bashrc
+RUN chmod 7777 ~/.bashrc
+RUN ~/.bashrc  
 #############################################################################################################################
 
 RUN if grep -q secure_path /etc/sudoers; then sh -c "echo export rvmsudo_secure_path=1 >> /etc/profile.d/rvm_secure_path.sh" && echo Environment variable installed; fi
