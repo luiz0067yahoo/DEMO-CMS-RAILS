@@ -4,9 +4,12 @@
 #***********************************************************************************************************************
 FROM ubuntu:20.04
 
+
 RUN ln -sf /usr/share/zoneinfo/America/Sao_Paulo /etc/localtime
 RUN echo "America/Sao_Paulo" > /etc/timezone 
 RUN export TZ=America/Sao_Paulo
+
+
 
 RUN apt-get update && apt-get upgrade && apt-get dist-upgrade -y
 RUN apt-get install --yes build-essential 
@@ -28,11 +31,19 @@ RUN node -v
 RUN curl -sSL https://rvm.io/mpapis.asc | gpg --import -
 RUN curl -sSL https://rvm.io/pkuczynski.asc | gpg --import -
 RUN apt-get update
-RUN curl -sSL https://get.rvm.io | bash -s stable
+RUN curl -sSL https://get.rvm.io | bash -s stable  
+RUN curl -sSL https://raw.githubusercontent.com/rvm/rvm/stable/binscripts/rvm-installer     -o rvm-installer 
+RUN curl -sSL https://raw.githubusercontent.com/rvm/rvm/stable/binscripts/rvm-installer.asc -o rvm-installer.asc 
+RUN gpg2 --verify rvm-installer.asc rvm-installer 
+RUN bash rvm-installer
 #RUN usermod -a -G rvm $USER
 #RUN usermod -a -G rvm 'whoami'
 RUN . /etc/profile.d/rvm.sh
+#RUN bash -l -c PATH=$PATH:/path/to/your/rvm/binary
+RUN /bin/bash -l -c ". /etc/profile.d/rvm.sh && rvm install 2.3.3"
 #############################################################################################################################
+
+
 
 RUN if grep -q secure_path /etc/sudoers; then sh -c "echo export rvmsudo_secure_path=1 >> /etc/profile.d/rvm_secure_path.sh" && echo Environment variable installed; fi
 RUN rvm install ruby
@@ -62,6 +73,10 @@ RUN rm -rf ~/demo_cms_rails/
 #RUN git config --global user.email "${GH_USERNAME}@users.noreply.github.com"
 #RUN git config --global user.name "${GH_USERNAME}"
 RUN git clone https://github.com/luiz0067yahoo/demo_cms_rails.git ~/demo_cms_rails/
+
+
+
+
 RUN echo "load repository"
 RUN bundle install
 RUN echo "install dependencies"
