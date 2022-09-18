@@ -40,6 +40,7 @@ RUN bash rvm-installer
 #RUN usermod -a -G rvm 'whoami'
 RUN . /etc/profile.d/rvm.sh
 #RUN bash -l -c PATH=$PATH:/path/to/your/rvm/binary
+RUN apt-get install -y gawk autoconf automake bison libffi-dev libgdbm-dev libncurses5-dev libtool libyaml-dev pkg-config libgmp-dev libreadline-dev libssl1.0-dev
 RUN /bin/bash -l -c ". /etc/profile.d/rvm.sh && rvm install 2.3.3"
 #############################################################################################################################
 
