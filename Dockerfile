@@ -112,9 +112,9 @@ RUN curl -sSL https://get.rvm.io | bash -s -- --autolibs=read-fail stable \
 #RUN if grep -q secure_path /etc/sudoers; then sh -c "echo export rvmsudo_secure_path=1 >> /etc/profile.d/rvm_secure_path.sh" && echo Environment variable installed; fi
 RUN export PATH=$PATH:/opt/rvm/bin:/opt/rvm/sbin
 RUN  /bin/bash -c "source $HOME/.rvm/scripts/rvm"
-RUN type rvm | head -1
-RUN rvm group add rvm ubuntu    
-RUN rvm get stable --auto-dotfiles
+RUN $HOME/.rvm/scripts/rvm | head -1
+RUN $HOME/.rvm/scripts/rvm group add rvm ubuntu    
+RUN $HOME/.rvm/scripts/rvm get stable --auto-dotfiles
 RUN fix-permissions system
 RUN echo "install and config rvm, bundler"  
 ###############################################################################################################################################################  
