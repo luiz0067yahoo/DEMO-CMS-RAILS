@@ -18,9 +18,6 @@ RUN node -v
 #RUN echo "deb https://dl.yarnpkg.com/debian/ stable main" | tee /etc/apt/sources.list.d/yarn.list
 #RUN apt-get update && apt-get install --yes yarn
 
-
-
-
 #############################################################################################################################
 RUN curl -sSL https://rvm.io/mpapis.asc | gpg --import -
 RUN curl -sSL https://rvm.io/pkuczynski.asc | gpg --import -
@@ -28,11 +25,10 @@ RUN apt-get update
 RUN curl -sSL https://get.rvm.io | bash -s stable
 #RUN usermod -a -G rvm $USER
 #RUN usermod -a -G rvm 'whoami'
-RUN ~/.bashrc
-RUN echo 'source "/etc/profile.d/rvm.sh"' >> ~/.bashrc
+RUN ~/.bashrc  
+RUN echo 'source "/etc/profile.d/rvm.sh"' >> ~/.bashrc   
 RUN source ~/.bashrc
 #############################################################################################################################
-
 
 RUN if grep -q secure_path /etc/sudoers; then sh -c "echo export rvmsudo_secure_path=1 >> /etc/profile.d/rvm_secure_path.sh" && echo Environment variable installed; fi
 RUN rvm install ruby
@@ -42,8 +38,6 @@ RUN ruby -v
 RUN gem install bundler
 RUN gem install rails
 RUN rails -v
-
-
 
 #RUN apt-get install --yes postgresql-client
 RUN apt-get install --yes mysql-server mysql-client libmysqlclient-dev
@@ -55,6 +49,8 @@ COPY entrypoint.sh /usr/bin/
 RUN chmod +x /usr/bin/entrypoint.sh
 ENTRYPOINT ["entrypoint.sh"]
 EXPOSE 3000
+
+
 
 # Configure the main process to run when running the image
 CMD ["rails", "server", "-b", "0.0.0.0"]
