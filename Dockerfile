@@ -76,7 +76,7 @@ RUN set -ex && \
       gpg --batch --keyserver hkp://pgp.mit.edu:80 --recv-keys "$key" ; \
   done
   
-RUN mkdir -R /home/docker/.rvm/gemsets/
+RUN mkdir -p /home/docker/.rvm/gemsets/
 RUN rm -rf /home/docker/.rvm/gemsets/global.gems
 RUN touch /home/docker/.rvm/gemsets/global.gems
 RUN chmod 777 /home/docker/.rvm/gemsets/global.gems
