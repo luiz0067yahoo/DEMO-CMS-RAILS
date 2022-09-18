@@ -105,12 +105,12 @@ RUN if grep -q secure_path /etc/sudoers; then sh -c "echo export rvmsudo_secure_
 RUN rvm install ruby
 RUN rvm --default use ruby
 
-RUN ruby -v
-RUN gem install bundler
-RUN gem install rails
+RUN ruby -v   
+RUN gem install bundler 
+RUN gem install rails  
 RUN rails -v
 
-#RUN apt-get install --yes postgresql-client
+#RUN apt-get install --yes postgresql-client   
 RUN apt-get install --yes mysql-server mysql-client libmysqlclient-dev
 RUN mysql_secure_installation
 RUN gem install mysql2
@@ -127,7 +127,7 @@ RUN echo "====> Confirm successful installation."
 RUN rails -v
 RUN rm -rf ~/demo_cms_rails/
 #RUN git config --global user.email "${GH_USERNAME}@users.noreply.github.com"
-#RUN git config --global user.name "${GH_USERNAME}"
+#RUN git config --global user.name "${GH_USERNAME}"   
 RUN git clone https://github.com/luiz0067yahoo/demo_cms_rails.git ~/demo_cms_rails/
 
 
