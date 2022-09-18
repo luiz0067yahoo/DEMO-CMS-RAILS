@@ -22,16 +22,15 @@ RUN node -v
 
 
 #############################################################################################################################
-
 RUN curl -sSL https://rvm.io/mpapis.asc | gpg --import -
 RUN curl -sSL https://rvm.io/pkuczynski.asc | gpg --import -
 RUN apt-get update
 RUN curl -sSL https://get.rvm.io | bash -s stable
-RUN usermod -a -G rvm 'whoami'
+#RUN usermod -a -G rvm $USER
+#RUN usermod -a -G rvm 'whoami'
 RUN ~/.bashrc
 RUN echo 'source "/etc/profile.d/rvm.sh"' >> ~/.bashrc
 RUN source ~/.bashrc
-
 #############################################################################################################################
 
 
