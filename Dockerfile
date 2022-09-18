@@ -90,7 +90,7 @@ RUN groupadd -r ubuntu -g 433 && \
     useradd -u 431 -r -g ubuntu -s /sbin/nologin -c "Docker image user" ubuntu
 RUN rvm group add rvm ubuntu    
 USER ubuntu
-RUN rvmsudo rvm get stable --auto-dotfiles
+RUN rvm get stable --auto-dotfiles
 RUN fix-permissions system
 
 # Install Rubies
@@ -111,7 +111,6 @@ RUN if grep -q secure_path /etc/sudoers; then sh -c "echo export rvmsudo_secure_
 RUN rvm install ruby
 RUN rvm --default use ruby
   
-
 RUN rm -rf ~/demo_cms_rails/
 RUN git clone https://github.com/luiz0067yahoo/demo_cms_rails.git /home/ubuntu/demo_cms_rails/
 RUN cd ~/demo_cms_rails/
