@@ -61,7 +61,6 @@ RUN apt-get update \
 #RUN curl -sSL https://rvm.io/mpapis.asc | gpg --import -
 #RUN curl -sSL https://rvm.io/pkuczynski.asc | gpg --import -
 RUN mkdir -p /usr/src/app && chmod 777 /usr/src/app
-RUN useradd docker
 RUN useradd -m docker
 RUN useradd -m -d /home/docker docker
 #RUN usermod -aG sudo docker
