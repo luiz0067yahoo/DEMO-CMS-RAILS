@@ -169,7 +169,6 @@ RUN echo "http://localhost:3000"
 
 #USER root
 #RUN chmod 777 /home/ubuntu/demo_cms_rails/  
-
 EXPOSE 3000
 
 RUN echo "====> Confirm successful installation."
