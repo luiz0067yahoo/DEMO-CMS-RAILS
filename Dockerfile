@@ -82,9 +82,6 @@ RUN chmod 777 /home/docker/.rvm/gemsets/global.gems
 RUN curl -sSL https://get.rvm.io | bash -s -- --autolibs=read-fail stable \
  && echo 'bundler' >> /home/docker/.rvm/gemsets/global.gems \
  && echo 'rvm_silence_path_mismatch_check_flag=1' >> ~/.rvmrc
-RUN rvm get stable --auto-dotfiles
-RUN rvm fix-permissions system
-
 
 SHELL ["/bin/bash", "-lc"]
 CMD ["/bin/bash", "-l"]
@@ -93,6 +90,8 @@ RUN groupadd -r ubuntu -g 433 && \
     useradd -u 431 -r -g ubuntu -s /sbin/nologin -c "Docker image user" ubuntu
 RUN rvm group add rvm ubuntu    
 USER ubuntu
+RUN rvmsudo rvm get stable --auto-dotfiles
+RUN fix-permissions system
 
 # Install Rubies
 #RUN rvm install "ruby-2.5.1" 
