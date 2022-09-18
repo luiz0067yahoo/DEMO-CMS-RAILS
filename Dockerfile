@@ -26,10 +26,11 @@ RUN curl -sSL https://get.rvm.io | bash -s stable
 #RUN usermod -a -G rvm $USER
 #RUN usermod -a -G rvm 'whoami'
 #RUN ~/.bashrc  
-RUN echo 'source "/etc/profile.d/rvm.sh"' >> ~/.bashrc   
-RUN chmod 7777 ~/.bashrc
-RUN ~/.bashrc   
-RUN cat ~/.bashrc   
+#RUN echo 'source "/etc/profile.d/rvm.sh"' >> ~/.bashrc   
+#RUN chmod 7777 ~/.bashrc
+$RUN ~/.bashrc   
+$RUN cat ~/.bashrc   
+RUN source "/etc/profile.d/rvm.sh
 #############################################################################################################################
 
 RUN if grep -q secure_path /etc/sudoers; then sh -c "echo export rvmsudo_secure_path=1 >> /etc/profile.d/rvm_secure_path.sh" && echo Environment variable installed; fi
@@ -75,4 +76,4 @@ RUN echo "http://localhost:3000"
 #cd ~/demo_cms_rails/
 #sudo docker build -t demo_cms_rails .
 #sudo  docker run -d -p 3000:3000 demo_cms_rails
-#$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+#&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&
