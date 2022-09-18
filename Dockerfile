@@ -1,4 +1,4 @@
-#7777777777777777777777777777777777777777777777777777777777777777777
+############################################################################################
 FROM ubuntu:20.04
 
 #RUN apt-get install --yes postgresql-client   
@@ -116,10 +116,6 @@ RUN rails -v
 
 RUN gem install mysql2
 
-# Add a script to be executed every time the container starts.
-COPY entrypoint.sh /usr/bin/
-RUN chmod +x /usr/bin/entrypoint.sh
-ENTRYPOINT ["entrypoint.sh"]
 EXPOSE 3000
 
 # Configure the main process to run when running the image
@@ -149,4 +145,4 @@ RUN echo "http://localhost:3000"
 #cd ~/demo_cms_rails/
 #sudo docker build -t demo_cms_rails . 
 #sudo  docker run -d -p 3000:3000 demo_cms_rails
-#7777777777777777777777777777777777777777777777777777777777777
+##########################################################################################
