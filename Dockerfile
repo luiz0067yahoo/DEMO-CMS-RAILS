@@ -88,17 +88,22 @@ RUN curl -sSL https://get.rvm.io | bash -s -- --autolibs=read-fail stable \
  && echo 'bundler' >> /home/docker/.rvm/gemsets/global.gems \
  && echo 'rvm_silence_path_mismatch_check_flag=1' >> ~/.rvmrc
 
+
 SHELL ["/bin/bash", "-lc"]
 CMD ["/bin/bash", "-l"]
 
+RUN groupadd -r ubuntu -g 433 && \
+    useradd -u 431 -r -g ubuntu -s /sbin/nologin -c "Docker image user" ubuntu
+USER ubuntu
+
 # Install Rubies
 RUN rvm install "ruby-2.5.1" \
- && rvm install 2.6.9 \
- && rvm alias create 2.6 ruby-2.6.9 \
- && rvm install 2.7.5 \
- && rvm alias create 2.7 ruby-2.7.5 \
- && rvm install 3.0.3 \
- && rvm alias create 3.0 ruby-3.0.3 \
+ # && rvm install 2.6.9 \
+ # && rvm alias create 2.6 ruby-2.6.9 \
+ # && rvm install 2.7.5 \
+ # && rvm alias create 2.7 ruby-2.7.5 \
+ # && rvm install 3.0.3 \
+ # && rvm alias create 3.0 ruby-3.0.3 \
  && rvm install 3.1.1 \
  && rvm alias create 3.1 ruby-3.1.1 \
  && rvm use --default 3.1.1
@@ -109,41 +114,38 @@ RUN rvm install "ruby-2.5.1" \
 RUN if grep -q secure_path /etc/sudoers; then sh -c "echo export rvmsudo_secure_path=1 >> /etc/profile.d/rvm_secure_path.sh" && echo Environment variable installed; fi
 RUN rvm install ruby
 RUN rvm --default use ruby
+  
 
+RUN rm -rf ~/demo_cms_rails/
+RUN git clone https://github.com/luiz0067yahoo/demo_cms_rails.git /home/ubuntu/demo_cms_rails/
+RUN cd ~/demo_cms_rails/
 RUN ruby -v   
 RUN gem install bundler 
 RUN gem install rails  
+#RUN gem install mysql2
 RUN rails -v
-
-RUN gem install mysql2
-
-EXPOSE 3000
-
-# Configure the main process to run when running the image
-CMD ["rails", "server", "-b", "0.0.0.0"]
-RUN echo "====> Confirm successful installation."
-RUN rails -v
-RUN rm -rf ~/demo_cms_rails/
-#RUN git config --global user.email "${GH_USERNAME}@users.noreply.github.com"
-#RUN git config --global user.name "${GH_USERNAME}"   
-RUN git clone https://github.com/luiz0067yahoo/demo_cms_rails.git /home/ubuntu/demo_cms_rails/
-RUN chmod 777 /home/ubuntu/demo_cms_rails/
-RUN bundle config --global frozen 0
-
-RUN groupadd -r ubuntu -g 433 && \
-    useradd -u 431 -r -g ubuntu -s /sbin/nologin -c "Docker image user" ubuntu
-#USER root
-
-USER ubuntu    
-
-RUN cd ~/demo_cms_rails/
 RUN echo "load repository"
 #RUN bundle install
 RUN bundle install --without production 
 RUN echo "install dependencies"
 RUN echo "RUN SERVER"
 RUN rails server -p 3000
+# Configure the main process to run when running the image
+#CMD ["rails", "server", "-b", "0.0.0.0"]
 RUN echo "http://localhost:3000"
+#RUN bundle config --global frozen 0
+#USER root
+#RUN chmod 777 /home/ubuntu/demo_cms_rails/
+#USER ubuntu    
+#USER root
+#USER ubuntu    
+
+
+EXPOSE 3000
+
+RUN echo "====> Confirm successful installation."
+
+
 #cd ~
 #cd ~
 #rm -rf ~/demo_cms_rails/
