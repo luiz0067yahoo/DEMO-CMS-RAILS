@@ -77,6 +77,6 @@ RUN echo "http://localhost:3000"
 #git clone https://github.com/luiz0067yahoo/demo_cms_rails.git ~/demo_cms_rails/
 #sudo chmod 777 ~/demo_cms_rails/
 #cd ~/demo_cms_rails/
-#sudo docker build -t demo_cms_rails .
+#sudo docker build -t demo_cms_rails . 
 #sudo  docker run -d -p 3000:3000 demo_cms_rails
 #&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&
