@@ -1,9 +1,6 @@
 ###############################################################################################################################################################
 FROM ubuntu:20.04
 RUN echo "ubuntu:20.04"
-#RUN apt-get install --yes postgresql-client   
-#RUN apt-get install --yes mysql-server mysql-client libmysqlclient-dev
-#RUN mysql_secure_installation       
 ###############################################################################################################################################################
 
 ###############################################################################################################################################################
@@ -57,6 +54,13 @@ RUN apt-get update && apt-get upgrade && apt-get dist-upgrade --yes \
 ###############################################################################################################################################################
 
 ###############################################################################################################################################################
+#RUN apt-get install --yes postgresql-client   
+#RUN apt-get install --yes mysql-server mysql-client libmysqlclient-dev
+#RUN mysql_secure_installation       
+#RUN echo "data base install"
+###############################################################################################################################################################
+
+###############################################################################################################################################################
 RUN apt-get --yes  install nodejs
 RUN ln -sf /usr/bin/nodejs /usr/local/bin/node   
 RUN node -v
@@ -78,10 +82,10 @@ RUN chmod 777 /home/ubuntu/
 USER ubuntu
 #RUN echo "create user ubuntu login ubuntu"
 ###############################################################################################################################################################
+
+###############################################################################################################################################################
 RUN curl -sSL https://rvm.io/mpapis.asc | gpg --import -
 RUN curl -sSL https://rvm.io/pkuczynski.asc | gpg --import -
-RUN mkdir -p /usr/src/app && chmod 777 /usr/src/app
-
 # Install RVM
 RUN set -ex && \
   for key in \
@@ -92,15 +96,20 @@ RUN set -ex && \
       gpg --batch --keyserver hkp://ipv4.pool.sks-keyservers.net --recv-keys "$key" || \
       gpg --batch --keyserver hkp://pgp.mit.edu:80 --recv-keys "$key" ; \
   done
-  
+RUN echo "rvm import key"  
+###############################################################################################################################################################  
+
+###############################################################################################################################################################  
 RUN mkdir -p /home/ubuntu/.rvm/gemsets/
-RUN rm -rf /home/ubuntu/.rvm/gemsets/global.gems
-RUN touch /home/ubuntu/.rvm/gemsets/global.gems
-RUN chmod 777 /home/ubuntu/.rvm/gemsets/global.gems
+#RUN rm -rf /home/ubuntu/.rvm/gemsets/global.gems
+#RUN touch /home/ubuntu/.rvm/gemsets/global.gems
+#RUN chmod 777 /home/ubuntu/.rvm/gemsets/global.gems
 RUN curl -sSL https://get.rvm.io | bash -s -- --autolibs=read-fail stable \
- && echo 'bundler' >> /home/docker/.rvm/gemsets/global.gems \
+ && echo 'bundler' >> /home/ubuntu/.rvm/gemsets/global.gems \
  && echo 'rvm_silence_path_mismatch_check_flag=1' >> ~/.rvmrc
 RUN rvm group add rvm ubuntu    
+RUN echo "install rvm"  
+###############################################################################################################################################################  
                                                                                                  
 SHELL ["/bin/bash", "-lc"]
 CMD ["/bin/bash", "-l"]
