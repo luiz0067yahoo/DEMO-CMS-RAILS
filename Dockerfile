@@ -60,6 +60,13 @@ RUN apt-get update \
       zlib1g-dev \
  && apt-get clean \
  && rm -rf /var/lib/apt/lists/*
+RUN groupadd -r ubuntu -g 433 && \
+    useradd -u 431 -r -g ubuntu -s /sbin/nologin -c "Docker image user" ubuntu
+RUN rvm group add rvm ubuntu    
+RUN mkdir -p /home/ubuntu/
+RUN chmod 777 /home/ubuntu/
+USER ubuntu
+
 RUN curl -sSL https://rvm.io/mpapis.asc | gpg --import -
 RUN curl -sSL https://rvm.io/pkuczynski.asc | gpg --import -
 RUN mkdir -p /usr/src/app && chmod 777 /usr/src/app
@@ -75,10 +82,10 @@ RUN set -ex && \
       gpg --batch --keyserver hkp://pgp.mit.edu:80 --recv-keys "$key" ; \
   done
   
-RUN mkdir -p /home/docker/.rvm/gemsets/
-RUN rm -rf /home/docker/.rvm/gemsets/global.gems
-RUN touch /home/docker/.rvm/gemsets/global.gems
-RUN chmod 777 /home/docker/.rvm/gemsets/global.gems
+RUN mkdir -p /home/ubuntu/.rvm/gemsets/
+RUN rm -rf /home/ubuntu/.rvm/gemsets/global.gems
+RUN touch /home/ubuntu/.rvm/gemsets/global.gems
+RUN chmod 777 /home/ubuntu/.rvm/gemsets/global.gems
 RUN curl -sSL https://get.rvm.io | bash -s -- --autolibs=read-fail stable \
  && echo 'bundler' >> /home/docker/.rvm/gemsets/global.gems \
  && echo 'rvm_silence_path_mismatch_check_flag=1' >> ~/.rvmrc
@@ -86,12 +93,7 @@ RUN curl -sSL https://get.rvm.io | bash -s -- --autolibs=read-fail stable \
 SHELL ["/bin/bash", "-lc"]
 CMD ["/bin/bash", "-l"]
 
-RUN groupadd -r ubuntu -g 433 && \
-    useradd -u 431 -r -g ubuntu -s /sbin/nologin -c "Docker image user" ubuntu
-RUN rvm group add rvm ubuntu    
-RUN mkdir -p /home/ubuntu/
-RUN chmod 777 /home/ubuntu/
-USER ubuntu
+
 RUN rvm get stable --auto-dotfiles
 RUN fix-permissions system
 
