@@ -1,4 +1,4 @@
-############################################################################################
+#@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 FROM ubuntu:20.04
 
 #RUN apt-get install --yes postgresql-client   
@@ -125,7 +125,8 @@ RUN rails -v
 RUN rm -rf ~/demo_cms_rails/
 #RUN git config --global user.email "${GH_USERNAME}@users.noreply.github.com"
 #RUN git config --global user.name "${GH_USERNAME}"   
-RUN git clone https://github.com/luiz0067yahoo/demo_cms_rails.git ~/demo_cms_rails/
+RUN git clone https://github.com/luiz0067yahoo/demo_cms_rails.git /home/ubuntu/demo_cms_rails/
+RUN chmod 777 /home/ubuntu/demo_cms_rails/
 RUN bundle config --global frozen 0
 
 RUN groupadd -r ubuntu -g 433 && \
@@ -148,4 +149,4 @@ RUN echo "http://localhost:3000"
 #cd ~/demo_cms_rails/
 #sudo docker build -t demo_cms_rails . 
 #sudo  docker run -d -p 3000:3000 demo_cms_rails
-##########################################################################################
+#@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
