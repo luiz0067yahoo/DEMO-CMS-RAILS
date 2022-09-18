@@ -99,7 +99,8 @@ USER ubuntu
 #RUN && rvm alias create 2.7 ruby-2.7.5 
 #RUN && rvm install 3.0.3 
 #RUN && rvm alias create 3.0 ruby-3.0.3 
-RUN rvm install 3.1.1 
+#RUN rvm install 3.1.1 
+RUN rvm install ruby-3.1.1 
 RUN rvm alias create 3.1 ruby-3.1.1 
 RUN rvm use --default 3.1.1
 #############################################################################################################################
