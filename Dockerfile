@@ -118,11 +118,6 @@ RUN gem install mysql2
 
 EXPOSE 3000
 
-RUN groupadd -r ubuntu -g 433 && \
-    useradd -u 431 -r -g ubuntu -s /sbin/nologin -c "Docker image user" ubuntu
-#USER root
-USER ubuntu    
-    
 # Configure the main process to run when running the image
 CMD ["rails", "server", "-b", "0.0.0.0"]
 RUN echo "====> Confirm successful installation."
@@ -133,10 +128,15 @@ RUN rm -rf ~/demo_cms_rails/
 RUN git clone https://github.com/luiz0067yahoo/demo_cms_rails.git ~/demo_cms_rails/
 RUN bundle config --global frozen 0
 
+RUN groupadd -r ubuntu -g 433 && \
+    useradd -u 431 -r -g ubuntu -s /sbin/nologin -c "Docker image user" ubuntu
+#USER root
+
+USER ubuntu    
+RUN cd ~/demo_cms_rails/
 RUN echo "load repository"
 RUN bundle install
 RUN echo "install dependencies"
-RUN cd ~/demo_cms_rails/
 RUN echo "RUN SERVER"
 RUN rails server -p 3000
 RUN echo "http://localhost:3000"
