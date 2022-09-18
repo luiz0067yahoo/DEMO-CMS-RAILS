@@ -25,7 +25,7 @@ RUN apt-get update
 RUN curl -sSL https://get.rvm.io | bash -s stable
 #RUN usermod -a -G rvm $USER
 #RUN usermod -a -G rvm 'whoami'
-RUN ~/.bashrc  
+#RUN ~/.bashrc  
 RUN echo 'source "/etc/profile.d/rvm.sh"' >> ~/.bashrc   
 RUN source ~/.bashrc
 #############################################################################################################################
