@@ -120,7 +120,8 @@ RUN echo "install and config rvm, bundler"
 ###############################################################################################################################################################  
 
 ###############################################################################################################################################################  
-# Install Rubies
+SHELL ["/bin/bash", "-lc"]
+CMD ["/bin/bash", "-l"]
 RUN rvm install "ruby-2.5.1" 
 #RUN rvm install 2.6.9 
 #RUN rvm alias create 2.6 ruby-2.6.9 
@@ -154,8 +155,7 @@ RUN echo "load repository"
 #RUN bundle exec jekyll build
 RUN cd ~/demo_cms_rails/
 RUN cd ls
-SHELL ["/bin/bash", "-lc"]
-CMD ["/bin/bash", "-l"]
+
 RUN bundle install 
 #RUN bundle install
 #RUN bundle config --global frozen 0  
