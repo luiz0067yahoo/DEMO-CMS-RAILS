@@ -4,8 +4,8 @@ RUN echo "ubuntu:20.04"
 ###############################################################################################################################################################
 
 ###############################################################################################################################################################
-#RUN mkdir /app
-#RUN chmod 777 /app
+RUN mkdir /app
+RUN chmod 777 /app
 WORKDIR /app
 RUN ln -sf /usr/share/zoneinfo/America/Sao_Paulo /etc/localtime   
 RUN echo "America/Sao_Paulo" > /etc/timezone     
@@ -139,7 +139,7 @@ RUN echo "install and config ruby"
 #############################################################################################################################
 RUN git clone https://github.com/luiz0067yahoo/demo_cms_rails.git 
 #WORKDIR /app
-RUN COPY Gemfile Gemfile.lock ./
+COPY Gemfile Gemfile.lock /app
 RUN echo "load project"  
 #############################################################################################################################
 
@@ -157,13 +157,11 @@ RUN echo "install dependencies"
 #############################################################################################################################
 RUN echo "RUN SERVER" 
 RUN rails server -p 3000
-# Configure the main process to run when running the image 
-#CMD ["rails", "server", "-b", "0.0.0.0"] 
-RUN echo "http://localhost:3000"  
-#############################################################################################################################
-
-#USER root
-#RUN chmod 777 /home/ubuntu/demo_cms_rails/  
+COPY entrypoint.sh /usr/bin/
+RUN chmod +x /usr/bin/entrypoint.sh
+ENTRYPOINT ["entrypoint.sh"]
 EXPOSE 3000
-
+# Configure the main process to run when running the image
+CMD ["rails", "server", "-b", "0.0.0.0"]
+#############################################################################################################################
 RUN echo "====> Confirm successful installation."
