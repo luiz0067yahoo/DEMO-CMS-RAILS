@@ -153,7 +153,7 @@ RUN gem install rails
 #RUN gem install mysql2
 RUN rails -v
 RUN echo "load repository"
-RUN bundle exec jekyll build
+#RUN bundle exec jekyll build
 RUN bundle install
 #RUN bundle install
 #RUN bundle config --global frozen 0  
