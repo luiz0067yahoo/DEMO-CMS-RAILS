@@ -27,10 +27,15 @@
 ------------
 ## REQUISITOS
 - **servidor amazon aws ec2**
-- **linux server ubunbtu 18.04**
+- **linux server ubunbtu 20.04**
 - **docker**
-- **apache2**
-- **git**
+- **git** 
+- **curl** 
+- **node.js**
+- **ruby2.5.1**
+- **dependencias**
+- **rails**
+- **SQL lite** 
 - navegador de internet **Google Chrome**, **Mozilla Firefox**, **Opera**, etc...
 ------------
 ## CONFIGURANDO DEPLOY KEYS
@@ -112,3 +117,5 @@
 - Cadastro de **Galeria de Vídeos** 
 - Cadastro de **Contador de acesso** 
 ------------
+
+<img src="https://github.com/luiz0067yahoo/demo_cms_rails/raw/master/screeshot.png">
