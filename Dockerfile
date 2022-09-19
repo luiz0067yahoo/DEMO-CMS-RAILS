@@ -137,7 +137,7 @@ RUN echo "install and config ruby"
 #############################################################################################################################
 
 #############################################################################################################################
-RUN git clone https://github.com/luiz0067yahoo/demo_cms_rails.git 
+RUN git clone https://github.com/luiz0067yahoo/demo_cms_rails.git WORKDIR
 #WORKDIR /app
 RUN echo "load project"  
 #############################################################################################################################
@@ -149,6 +149,7 @@ RUN gem install rails
 #RUN gem install mysql2
 RUN rails -v
 RUN echo "load repository"
+RUN bundle config frozen 0
 RUN bundle install 
 RUN echo "install dependencies"
 #############################################################################################################################
