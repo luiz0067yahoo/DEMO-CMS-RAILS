@@ -57,7 +57,7 @@ jobs:
               #sudo  docker run -d -p 3000:3000 demo_cms_rails
               #docker run --name pandora_community --rm \
               #-p 8085:80 \
-              #-p 41121:41121 \
+              #-p 41121:41121 \ 
               #-p 162:162 \
               #-e DBHOST=mysqlhost.local \
               #-e DBNAME=pandora \
