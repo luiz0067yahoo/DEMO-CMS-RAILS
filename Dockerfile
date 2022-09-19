@@ -139,7 +139,6 @@ RUN echo "install and config ruby"
 #############################################################################################################################
 RUN git clone https://github.com/luiz0067yahoo/demo_cms_rails.git 
 #WORKDIR /app
-COPY Gemfile Gemfile.lock /app
 RUN echo "load project"  
 #############################################################################################################################
 
