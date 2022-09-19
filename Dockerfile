@@ -149,7 +149,7 @@ RUN gem install rails
 #RUN gem install mysql2
 RUN rails -v
 RUN echo "load repository"
-RUN bundle config frozen 0
+RUN bundle config --global frozen 0
 RUN bundle install 
 RUN echo "install dependencies"
 #############################################################################################################################
