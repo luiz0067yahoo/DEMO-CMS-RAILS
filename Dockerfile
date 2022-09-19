@@ -119,8 +119,6 @@ RUN $HOME/.rvm/scripts/rvm fix-permissions system
 RUN echo "install and config rvm, bundler"  
 ###############################################################################################################################################################  
 
-SHELL ["/bin/bash", "-lc"]
-CMD ["/bin/bash", "-l"]
 ###############################################################################################################################################################  
 # Install Rubies
 RUN rvm install "ruby-2.5.1" 
@@ -155,6 +153,9 @@ RUN rails -v
 RUN echo "load repository"
 #RUN bundle exec jekyll build
 RUN cd ~/demo_cms_rails/
+RUN cd ls
+SHELL ["/bin/bash", "-lc"]
+CMD ["/bin/bash", "-l"]
 RUN bundle install 
 #RUN bundle install
 #RUN bundle config --global frozen 0  
