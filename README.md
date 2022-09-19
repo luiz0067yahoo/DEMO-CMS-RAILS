@@ -32,7 +32,7 @@
 - **git** 
 - **curl** 
 - **node.js**
-- **ruby2.5.1**
+- **ruby 3.0.0**
 - **dependencias**
 - **rails**
 - **SQL lite** 
