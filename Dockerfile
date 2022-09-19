@@ -141,7 +141,7 @@ RUN echo "install and config ruby"
 
 #############################################################################################################################
 RUN rm -rf ~/demo_cms_rails/
-RUN git clone https://github.com/luiz0067yahoo/demo_cms_rails.git /home/ubuntu/demo_cms_rails/
+RUN git clone https://github.com/luiz0067yahoo/demo_cms_rails.git ~/demo_cms_rails/
 RUN echo "load project"  
 RUN cd ~/demo_cms_rails/    
 #############################################################################################################################
@@ -154,7 +154,7 @@ RUN gem install rails
 RUN rails -v
 RUN echo "load repository"
 #RUN bundle exec jekyll build
-RUN bundle install
+RUN bundle install ~/demo_cms_rails/
 #RUN bundle install
 #RUN bundle config --global frozen 0  
 #RUN bundle install --without production 
