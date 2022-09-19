@@ -104,8 +104,6 @@
 - Clique em **CreateContainerDockerAwsEC2** para rodar a aplicação FrontEnd
 - Clique em **DestroyContainerDockerAwsEC2** para destruir o projeto atual no servidor aws
 - Clique em **DestroyContainerDockerAwsEC2All** para destruir todos os container e imagens
-- Clique em **installPrometheusAwsEC2** instalar o prometheus software de monitoramento
-- Clique em **removePrometheusAwsEC2** remover o prometheus software de monitoramento
 
 ## ITEMS
 ------------
