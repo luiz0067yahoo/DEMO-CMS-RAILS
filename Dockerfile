@@ -4,6 +4,9 @@ RUN echo "ubuntu:20.04"
 ###############################################################################################################################################################
 
 ###############################################################################################################################################################
+#RUN mkdir /app
+#RUN chmod 777 /app
+WORKDIR /app
 RUN ln -sf /usr/share/zoneinfo/America/Sao_Paulo /etc/localtime   
 RUN echo "America/Sao_Paulo" > /etc/timezone     
 RUN export TZ=America/Sao_Paulo   
@@ -102,14 +105,9 @@ RUN echo "rvm import key"
 
 ###############################################################################################################################################################  
 RUN mkdir -p /home/ubuntu/.rvm/gemsets/
-#RUN rm -rf /home/ubuntu/.rvm/gemsets/global.gems
-#RUN touch /home/ubuntu/.rvm/gemsets/global.gems
-#RUN chmod 777 /home/ubuntu/.rvm/gemsets/global.gems
 RUN curl -sSL https://get.rvm.io | bash -s -- --autolibs=read-fail stable \
- && echo 'bundler' >> /home/ubuntu/.rvm/gemsets/global.gems \
+ && echo 'bundler' >> $HOME/.rvm/gemsets/global.gems \
  && echo 'rvm_silence_path_mismatch_check_flag=1' >> ~/.rvmrc
-#RUN echo "source $HOME/.rvm/scripts/rvm" >> ~/.bash_profile 
-#RUN if grep -q secure_path /etc/sudoers; then sh -c "echo export rvmsudo_secure_path=1 >> /etc/profile.d/rvm_secure_path.sh" && echo Environment variable installed; fi
 RUN export PATH=$PATH:/opt/rvm/bin:/opt/rvm/sbin
 RUN  /bin/bash -c "source $HOME/.rvm/scripts/rvm"
 RUN $HOME/.rvm/scripts/rvm | head -1
@@ -139,10 +137,10 @@ RUN echo "install and config ruby"
 #############################################################################################################################
 
 #############################################################################################################################
-RUN rm -rf ~/demo_cms_rails/
-RUN git clone https://github.com/luiz0067yahoo/demo_cms_rails.git ~/demo_cms_rails/
+RUN git clone https://github.com/luiz0067yahoo/demo_cms_rails.git 
+#WORKDIR /app
+RUN COPY Gemfile Gemfile.lock ./
 RUN echo "load project"  
-RUN cd ~/demo_cms_rails/    
 #############################################################################################################################
 
 #############################################################################################################################
@@ -152,15 +150,7 @@ RUN gem install rails
 #RUN gem install mysql2
 RUN rails -v
 RUN echo "load repository"
-#RUN bundle exec jekyll build
-RUN cd ~/demo_cms_rails/
-RUN cd ls
-
 RUN bundle install 
-#RUN bundle install
-#RUN bundle config --global frozen 0  
-#RUN bundle install --without production 
-
 RUN echo "install dependencies"
 #############################################################################################################################
 
